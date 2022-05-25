@@ -1,0 +1,6 @@
+mail.smtp.host=smtp.gmail.com
+mail.smtp.port=25
+mail.smtp.user=ohmygames.company.spain@gmail.com
+mail.smtp.password=357951aA
+mail.smtp.starttls.enable=true
+mail.smtp.auth=true

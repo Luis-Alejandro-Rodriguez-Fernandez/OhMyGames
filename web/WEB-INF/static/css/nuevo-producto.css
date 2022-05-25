@@ -1,0 +1,119 @@
+
+main{
+    margin-top:70px;
+}
+
+#imgUp{
+    visibility: hidden;
+    height: 20px;
+    overflow: hidden;
+}
+
+#id-prod{
+    visibility: hidden;
+}
+
+main{
+    flex-direction: column;
+}
+
+.pre-des {
+    display: flex;
+    flex-direction: row;
+}
+
+.pre-des .field {
+    width: 115px;
+}
+
+.pre-des .field input {
+    width: 100px;
+}
+
+
+main form{
+    width: 700px;
+    height: 650px; 
+    background-color: black; 
+    display: flex;
+    flex-wrap:wrap;
+    padding: 20px;
+    border: solid 1px white;
+}
+
+form h2 {
+    width: 100%;
+    padding-bottom: .5em;
+    margin-bottom: 1em;
+    border-bottom:  solid white 1px;
+    text-align: center;
+}
+
+main form div{
+    flex-direction: column;
+    flex-wrap:wrap;
+
+}
+
+main form div:first-of-type{
+    width:50%;
+    flex-wrap:wrap; 
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-bottom: 10px;
+}
+
+.field input{
+    width:218px;
+    margin-bottom: 5px;
+}
+.field label{
+    width:218px;
+    margin-bottom: 5px;
+}
+
+textarea{
+    height:80px;
+    width: 650px;
+    resize: none;
+}
+#error{
+    visibility: hidden;
+    color : white;
+    background-color: rgba(250,50,50,0.7);
+    padding: 7px;
+    border: solid red 1px;
+    margin-bottom:10px;
+    width: 700px;
+    text-align: center;
+    height:30px;
+}
+
+form a{
+    background-color:#104BB6;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px white;
+    margin-top:5px;
+    cursor: pointer;
+}
+
+#add:hover,#modBtn:hover{
+    background-color:#1010A0;
+    transition: 1s;
+}
+
+main form div:last-of-type .field{
+    height: 80px;
+}
+
+main form img {
+    object-fit: contain;
+    height:300px; 
+    width:240px;
+    margin-bottom: 10px; 
+}
