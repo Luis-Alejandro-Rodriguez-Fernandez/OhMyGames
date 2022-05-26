@@ -9,7 +9,8 @@ let pass2 = document.getElementById("Contraseña2");
 let errorDiv = document.querySelector("#error");
 let errorP = document.querySelector("#error p");
 let img = document.getElementById("imga");
-let imgaUp = document.getElementById("imgUp");
+let form = document.getElementById("form");
+let imgUp = document.getElementById("imgUp");
 let imgLoad = document.getElementById("imgLoad");
 let imgBase64;
 let usrO;
@@ -27,7 +28,7 @@ reset.addEventListener("click", () => {
 });
 
 img.addEventListener("change", () => {
-    imgBase64 = getBase64Image();
+    getBase64Image();
 });
 
 modU.addEventListener("click", () => {
@@ -36,8 +37,9 @@ modU.addEventListener("click", () => {
             validarUsuario() &&
             validarCampoVacio(email, errorDiv, errorP, "El email no puede estar vacio") &&
             validarEmail() &&
-            validarChangePass(pass,pass2,errorDiv,errorP)) {
-        imgaUp.value = imgBase64;
+            validarChangePass(pass, pass2, errorDiv, errorP)) {
+        imgUp.value = imgBase64;
+
         errorDiv.style.visibility = "hidden";
 
         form.submit();
@@ -118,7 +120,7 @@ function validarChangePass(pass, pass2, errorDiv, errorP) {
             return true;
 
         } else {
-            errorDiv.style.visibility = "hidden";
+            errorDiv.style.visibility = "visible";
             errorP.textContent = "Las contraseñas no coinciden";
             return false;
         }

@@ -21,7 +21,7 @@ Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
                     <a href="?cmd=usuario-perfil">Volver</a>
                 </nav>
                 <div>
-                    <fom id="" method="POST" action="?svc=actualizar-user">
+                    <form id="form" method="POST" action="?cmd=usuario-actualizar">
                     <a id="reset">Reiniciar</a>
                     <section id="mod-div">
                         <div id="error"><p></p></div>
@@ -35,23 +35,23 @@ Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
                         </div>
                         <div id="field">
                             <label for="passO">Contraseña</label>
-                            <input type="password" id="Contraseña" value="" name="passO">
+                            <input type="password" id="Contraseña" value="" name="pass">
                         </div>
                         <div id="field">
                             <label for="passN">Repetir contraseña</label>
-                            <input type="password" id="Contraseña2" name="passN">
+                            <input type="password" id="Contraseña2" name="pass2">
                         </div>
                         <div>
                             <div class="field">
                                 <label for="imga">Imagen</label> 
                                 <input type="file" id="imga" name="imga">
-                                <input id="imgUp" name="imgUp">
+                                <input id="imgUp" name="imgUp" value="">
                             </div>
                             <img id="imgLoad" src="" alt="Aquí estará tu imagen."/>
                         </div>
                     </section>  
                     <a id="modU">Guardar</a>
-                    </fom>
+                    </form>
                 </div>                
             </div>
         </main>        

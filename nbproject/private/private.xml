@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/CopiaClase/00-PFC/backup/OhMyGames2/web/WEB-INF/views/page/historial-compras.jsp</file>
-            <file>file:/E:/CopiaClase/00-PFC/backup/OhMyGames2/web/WEB-INF/views/admin/landing.jsp</file>
-            <file>file:/E:/CopiaClase/00-PFC/backup/OhMyGames2/web/WEB-INF/static/css/nuevo-producto.css</file>
-            <file>file:/E:/CopiaClase/00-PFC/backup/OhMyGames2/web/WEB-INF/static/js/carrito.js</file>
-            <file>file:/E:/CopiaClase/00-PFC/backup/OhMyGames2/web/WEB-INF/views/page/producto-consulta.jsp</file>
-            <file>file:/E:/CopiaClase/00-PFC/backup/OhMyGames2/web/WEB-INF/static/css/landing.css</file>
-            <file>file:/E:/CopiaClase/00-PFC/backup/OhMyGames2/web/WEB-INF/views/page/nuevo-producto.jsp</file>
-            <file>file:/E:/CopiaClase/00-PFC/backup/OhMyGames2/web/WEB-INF/static/js/landing.js</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/js/moduser.js</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/pll/services/ServiceActualizarUser.java</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/views/page/nuevo-producto.jsp</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/views/page/modificar-usuario.jsp</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/dao/MainDAO.java</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/js/nuevo-producto.js</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/bll/MainBLL.java</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/views/page/perfil.jsp</file>
         </group>
     </open-files>
 </project-private>

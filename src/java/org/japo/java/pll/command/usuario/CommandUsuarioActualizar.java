@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.japo.java.pll.services;
+package org.japo.java.pll.command.usuario;
 
 import java.io.IOException;
-import org.japo.java.entities.Usuario;
 import javax.servlet.ServletException;
+import org.japo.java.entities.Usuario;
+import org.japo.java.pll.command.Command;
 
 /**
  *
  * @author Luis Alejandro Rodríguez Fernández -
  * luisalejandro.rodriguez.alum@iescamp.es
  */
-public class ServiceActualizarUser extends Service {
+public class CommandUsuarioActualizar extends Command{
 
     @Override
     public void process() throws ServletException, IOException {
-        if (request.getSession(false).getAttribute("usuario") != null) {
-            String json;
+  if (request.getSession(false).getAttribute("usuario") != null) {
+            String page="redirect/redirect-perfil";
             Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
             String email = request.getParameter("email");
             String user = request.getParameter("user");
@@ -31,7 +32,7 @@ public class ServiceActualizarUser extends Service {
             try {
                 if (pass.isEmpty() && img == null || img.isEmpty()) {
                     mod = bll.modificarUsuario(u.getId(), user, email);
-                } else if(img == null || img.isEmpty()){
+                } else if(img == null || img.isEmpty() || img.equalsIgnoreCase("undefined")){
                     if(pass.equals(pass2)){
                     mod = bll.modificarUsuarioPass(u.getId(), user, email, pass);
                     }
@@ -41,19 +42,17 @@ public class ServiceActualizarUser extends Service {
                     mod = bll.modificarUsuarioAll(u.getId(), user, email, pass, img);
                 }
                 if (mod) {
-                    json = "{\"res\" : true}";
+
                     Usuario ua = bll.obtenerUsuarioUs(user);
                     request.getSession(false).setAttribute("usuario", ua);
                 } else {
-                    json = "{\"res\" : false}";
+
                 }
             } catch (Exception e) {
-                json = "{\"res\" : false}";
+
             }
 
-            forward(json);
-        }
-        forwardCmd("page/perfil");
+            forward(page);
     }
-
+    }
 }
