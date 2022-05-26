@@ -139,10 +139,10 @@ public class MainBLL {
         return dao.modificarUsuario(id, user, email);
     }
 
-        public boolean modificarUsuarioPass(int id, String user, String email,String pass) {
-        return dao.modificarUsuarioPass(id, user, email,pass);
+    public boolean modificarUsuarioPass(int id, String user, String email, String pass) {
+        return dao.modificarUsuarioPass(id, user, email, pass);
     }
-    
+
     public boolean insertarProducto(String nombre, double precio, int descuento, int tipo, int categoria, int desarrolladora, String descripcion, String img, String date) {
         return dao.insertarProducto(nombre, precio, descuento, tipo, categoria, desarrolladora, descripcion, img, date);
     }
@@ -154,7 +154,7 @@ public class MainBLL {
     public List<Producto> listarComprasUsuario(int id) {
         return dao.listarComprasUsuario(id);
     }
-    
+
     public List<Compra> listarCompras(int id) {
         return dao.listarCompras(id);
     }
@@ -172,11 +172,27 @@ public class MainBLL {
     }
 
     public boolean modificarUsuarioImg(int id, String user, String email, String pass) {
-        return dao.modificarUsuarioImg(id,user,email,pass);
+        return dao.modificarUsuarioImg(id, user, email, pass);
     }
 
     public boolean modificarUsuarioAll(int id, String user, String email, String pass, String img) {
-        return dao.modificarUsuarioAll(id,user,email,pass,img);
+        return dao.modificarUsuarioAll(id, user, email, pass, img);
+    }
+
+    public boolean añadirCategoria(String nombre) {
+        return dao.añadirCategoria(nombre);
+    }
+
+    public Categoria obtenerCategoria(int id) {
+        return dao.obtenerCategorias(id);
+    }
+
+    public boolean modificarCategoria(int id,String nombre) {
+        return dao.modificarCategoria(id,nombre);
+    }
+
+    public boolean borrarCategoria(int id) {
+        return dao.borrarCategoria(id);
     }
 
 }

@@ -974,9 +974,9 @@ public class MainDAO {
         return numReg == 1;
     }
 
-    public boolean modificarUsuarioPass(int id, String user, String email,String pass) {
+    public boolean modificarUsuarioPass(int id, String user, String email, String pass) {
         String SQL = "UPDATE usuarios "
-                + "SET user = '" + user + "', email='" + email + "',password='"+pass+"'";
+                + "SET user = '" + user + "', email='" + email + "',password='" + pass + "'";
 
         SQL += " WHERE id =" + id;
 
@@ -1005,10 +1005,10 @@ public class MainDAO {
 
         return numReg == 1;
     }
-    
-        public boolean modificarUsuarioImg(int id, String user, String email, String img) {
+
+    public boolean modificarUsuarioImg(int id, String user, String email, String img) {
         String SQL = "UPDATE usuarios "
-                + "SET user = '" + user + "', email='" + email + "',avatar='"+img+"'";
+                + "SET user = '" + user + "', email='" + email + "',avatar='" + img + "'";
 
         SQL += " WHERE id =" + id;
 
@@ -1039,8 +1039,8 @@ public class MainDAO {
     }
 
     public boolean modificarUsuarioAll(int id, String user, String email, String pass, String img) {
-                String SQL = "UPDATE usuarios "
-                + "SET user = '" + user + "', email='" + email + "',avatar='"+img+"',password='"+pass+"'";
+        String SQL = "UPDATE usuarios "
+                + "SET user = '" + user + "', email='" + email + "',avatar='" + img + "',password='" + pass + "'";
 
         SQL += " WHERE id =" + id;
 
@@ -1069,6 +1069,7 @@ public class MainDAO {
 
         return numReg == 1;
     }
+
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Carrito">
     public List<Carrito> listarCarrito(int _id) {
@@ -1321,6 +1322,109 @@ public class MainDAO {
         return c;
     }
 
+    public boolean añadirCategoria(String nombre) {
+        final String SQL = "INSERT INTO categorias "
+                + "(nombre,descripcion) "
+                + "VALUES (?,'');";
+
+        // Número de registros afectados
+        int numReg = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Parametrizar Sentencia
+                ps.setString(1, nombre);
+
+                // Borrar el Producto
+                numReg = ps.executeUpdate();
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        return numReg == 1;
+    }
+
+    public boolean modificarCategoria(int id, String nombre) {
+        final String SQL = "UPDATE categorias "
+                + " SET nombre = ? WHERE id = ?";
+
+        // Número de registros afectados
+        int numReg = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Parametrizar Sentencia
+                ps.setString(1, nombre);
+                ps.setInt(2, id);
+
+                // Borrar el Producto
+                numReg = ps.executeUpdate();
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        return numReg == 1;
+    }
+
+    public boolean borrarCategoria(int id) {
+        // SQL
+        final String SQL = "DELETE FROM categorias WHERE id = ?";
+
+        // Número de registros afectados
+        int numReg = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Parametrizar Sentencia
+                ps.setInt(1, id);
+
+                // Borrar el Producto
+                numReg = ps.executeUpdate();
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        System.out.println(numReg);
+        return numReg == 1;
+
+    }
+
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Transaccion">
     public List<Transaccion> listarTransacciones(int _id) {
@@ -1527,7 +1631,7 @@ public class MainDAO {
                     while (rs.next()) {
                         // Obtener Campos
                         int producto = rs.getInt("id");
-  
+
                         // Instanciar Producto
                         Producto p = this.obtenerProducto(producto);
                         // Producto > Lista
@@ -1542,7 +1646,7 @@ public class MainDAO {
         // Devolder la lista de Productos
         return lista;
     }
-    
+
     public Compra obtenerCompra(int _id) {
         // SQL
         final String SQL = "SELECT * FROM compras WHERE user = ?";
@@ -1915,7 +2019,5 @@ public class MainDAO {
         return lista;
     }
     //</editor-fold>
-
-
 
 }

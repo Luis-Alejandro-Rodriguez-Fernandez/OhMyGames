@@ -44,6 +44,8 @@
                 <li><a href="?cmd=usuario-perfil">Perfil</a></li>
                     <%if (user.getGrupo() == 2) {%>
                 <li><a href="?cmd=producto-insertar">Añadir producto</a></li>
+                <li><a href="?cmd=categoria">Administrar categorias</a></li>
+                <li><a href="?cmd=desarrolladora">Administrar desarrolladoras</a></li>
                     <%}%>
                     <%if (user.getGrupo() == 1) {%>
                 <li><a href="?cmd=usuario-carrito">Ver carrito</a></li>
@@ -78,10 +80,10 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        
+
         border-bottom: 1px solid rgba(255, 250, 250, 0.7);
     }
-    
+
     #logo { 
         width: 115px;
         position: relative;
@@ -103,47 +105,47 @@
     header input {
         border-radius: .4em;
         border: none;
-        
+
         padding: .3rem;
         margin: .5em;
 
         width: 30rem;
     }
-    
+
     #list-look {
         width: 30rem;
         list-style: none;
-        
+
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: justify;
-        
+
         background-color: #1b1b1b; 
-        
+
         position: absolute;
         top: 2.1em;
         z-index: 10;
         display: none;
     }
-    
+
     #list-look li {
         width: 100%;
-        
+
         text-align: center;
-        
+
         padding: 1em 0 1.5em 0;
         /*margin-top: .2em;*/
-        
+
         border-bottom: 1px solid rgba(255, 250, 250, 0.7);
     }
-    
+
     #list-look li:hover {
         background-color: #0a0a0a;
         transition: 1s;
     }
-    
+
     /*------------------- NAV LATERAL -------------------*/
     #menu{
         position: fixed;

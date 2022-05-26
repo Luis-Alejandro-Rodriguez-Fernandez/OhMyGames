@@ -129,7 +129,7 @@ function carritoUsuario() {
                             let del = document.createElement("del");
                             let x = document.createElement("h5");
 
-cont++;
+                            cont++;
 
                             main.appendChild(section);
                             section.appendChild(a);
@@ -155,7 +155,6 @@ cont++;
                                 borrarProductoCarrito(prod.producto.nombre);
                             });
                         });
-                        console.log(cont);
                         paymentMethod();
                     } catch (e) {
 //                        let section = document.createElement("section");
