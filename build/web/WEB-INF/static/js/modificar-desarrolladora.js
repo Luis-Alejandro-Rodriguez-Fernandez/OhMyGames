@@ -13,6 +13,7 @@ nombre.addEventListener("keypress", (event) => {
 });
 
 
+
 btn.addEventListener("click", () => {
     if (validarCampoVacio(nombre, errorDiv, errorP, null)) {
         fetch("?svc=modificar-desarrolladora&nombre=" + nombre.value + "&id=" + id.value)
