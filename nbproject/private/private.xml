@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/pll/command/categoria/CommandCategoriaNueva.java</file>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/js/añadir-categoria.js</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/js/añadir-desarrolladora.js</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/pll/services/ServiceAñadirDesarrolladora.java</file>
             <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/dao/MainDAO.java</file>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/pll/services/ServiceAñadirCategoria.java</file>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/js/carrito.js</file>
             <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/bll/MainBLL.java</file>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/views/page/categorias.jsp</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/partials/header.jsp</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/views/page/desarrolladora-nueva.jsp</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/views/page/desarrolladoras.jsp</file>
         </group>
     </open-files>
 </project-private>

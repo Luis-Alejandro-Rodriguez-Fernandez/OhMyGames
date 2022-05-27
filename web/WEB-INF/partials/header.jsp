@@ -302,7 +302,7 @@
         let menuUl = document.querySelector("#menu ul");
         if (toggleNavStatus === false) {
             menuUl.style.visibility = "visible";
-            menu.style.width = "200px";
+            menu.style.width = "21vw";
             toggleNavStatus = true;
             menuX.style.display = "block";
             menuH.style.display = "none";

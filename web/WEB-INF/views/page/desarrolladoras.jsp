@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     
-List<Desarrolladora> ds = (List<Desarrolladora>) request.getAttribute("desarrolladas");
+List<Desarrolladora> ds = (List<Desarrolladora>) request.getAttribute("desarrolladoras");
 
 %>
 <!DOCTYPE html>
@@ -17,22 +17,29 @@ List<Desarrolladora> ds = (List<Desarrolladora>) request.getAttribute("desarroll
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <link rel="stylesheet" href="public/css/general.css"/>
-        <link rel="stylesheet" href="public/css/historial-compras.css"/>
+        <link rel="stylesheet" href="public/css/listado.css"/>
         <link href="public/img/logo.png" rel="icon" type="image/x-icon" />
         <title>Desarrolladoras - Oh My Games</title>
     </head>
     <body>
-        <a href="?cmd=desarrolladora-añadir">Añadir Categoria</a>
-        <%for(Desarrolladora d : ds){%>
-           
-        <section>
-            <%= d.getNombre() %>
-            <article>
-                <a href="?cmd=desarrolladora-modificar&id=<%=d.getId()%>"></a>
-                <a href="?cmd=desarrolladora-borrar&id=<%=d.getId()%>"></a>
-            </article>
-        </section>
+        <jsp:include page="../../partials/header.jsp"/>
+        <main>
+            <p id="delDes"><%= request.getSession(false).getAttribute("delDes") != null ? request.getSession(false).getAttribute("delDes") : null%></p>
+            <a href="?cmd=desarrolladora-nueva">Añadir Desarrolladora</a>
+            <%for(Desarrolladora d : ds){%>
 
-        <%}%>
+            <section>
+                <%= d.getNombre() %>
+                <article>
+                    <a href="?cmd=desarrolladora-modificar&id=<%=d.getId()%>">Mod</a>
+                    <a href="?cmd=desarrolladora-borrar&id=<%=d.getId()%>">Borrar</a>
+                </article>
+            </section>
+
+            <%}%>
+        </main>
+        <jsp:include page="../../partials/footer.jsp"/>
+        <script src="public/js/desarrolladora.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
     </body>
 </html>

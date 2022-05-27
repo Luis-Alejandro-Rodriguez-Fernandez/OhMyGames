@@ -11,3 +11,7 @@ and open the template in the editor.
 #delCat{
     visibility: hidden;
 }
+
+#delDes{
+    visibility: hidden;
+}

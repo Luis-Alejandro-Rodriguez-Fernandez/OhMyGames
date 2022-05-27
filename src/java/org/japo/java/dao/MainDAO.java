@@ -1941,8 +1941,8 @@ public class MainDAO {
         Desarrolladora d = null;
 
         // Obtención del Contexto
-        try {
-            // Contexto Inicial para operaciones de nombrado JNDI
+        try { 
+           // Contexto Inicial para operaciones de nombrado JNDI
             Context iniCtx = new InitialContext();
 
             // Contextualizar el contexto
@@ -1953,6 +1953,7 @@ public class MainDAO {
 
             try (
                      Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1,_id);
                 // Obtener Productos
                 try ( ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
@@ -1974,6 +1975,109 @@ public class MainDAO {
         return d;
     }
 
+        public boolean añadirDesarrolladora(String nombre) {
+        final String SQL = "INSERT INTO desarrolladoras "
+                + "(nombre,director) "
+                + "VALUES (?,'');";
+
+        // Número de registros afectados
+        int numReg = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Parametrizar Sentencia
+                ps.setString(1, nombre);
+
+                // Borrar el Producto
+                numReg = ps.executeUpdate();
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        return numReg == 1;
+    }
+
+    public boolean modificarDesarrolladora(int id, String nombre) {
+        final String SQL = "UPDATE desarrolladoras "
+                + " SET nombre = ? WHERE id = ?";
+
+        // Número de registros afectados
+        int numReg = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Parametrizar Sentencia
+                ps.setString(1, nombre);
+                ps.setInt(2, id);
+
+                // Borrar el Producto
+                numReg = ps.executeUpdate();
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        return numReg == 1;
+    }
+
+    public boolean borrarDesarrolladora(int id) {
+        // SQL
+        final String SQL = "DELETE FROM desarrolladoras WHERE id = ?";
+
+        // Número de registros afectados
+        int numReg = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Parametrizar Sentencia
+                ps.setInt(1, id);
+
+                // Borrar el Producto
+                numReg = ps.executeUpdate();
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        System.out.println(numReg);
+        return numReg == 1;
+
+    }
+    
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Grupo">
     public List<Grupo> listarGrupos() {

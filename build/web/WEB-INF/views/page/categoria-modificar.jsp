@@ -22,7 +22,9 @@ Categoria c = (Categoria) request.getAttribute("categoria");
     </head>
     <body>
         <jsp:include page="../../partials/header.jsp"/>
+
         <main>
+        <div id="error"><p></p></div> 
             <a href="?cmd=categoria">volver</a>
             <form id="form">
                 <div>

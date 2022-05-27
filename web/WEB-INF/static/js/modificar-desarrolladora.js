@@ -1,12 +1,13 @@
 /* global fecth*/
 
 let nombre = document.getElementById("nombre");
+let id = document.getElementById("id");
 let btn = document.getElementById("btn");
 let errorDiv = document.getElementById("error");
 let errorP = document.querySelector("#error p");
 
-nombre.addEventListener("keypress",(event)=>{
-    if(event.key ==="Enter"){
+nombre.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
         event.preventDefault();
     }
 });
@@ -14,43 +15,43 @@ nombre.addEventListener("keypress",(event)=>{
 
 btn.addEventListener("click", () => {
     if (validarCampoVacio(nombre, errorDiv, errorP, null)) {
-
-        fetch("?svc=añadir-categoria&nombre=" + nombre.value)
+        fetch("?svc=modificar-desarrolladora&nombre=" + nombre.value + "&id=" + id.value)
                 .then(res => res.json())
                 .then(json => {
-                    if (json.cat !== null) {
-                        if (json.cat) {
+                    if (json.des !== null) {
+                        if (json.des) {
                             Swal.fire({
                                 title: "Oh My Games",
-                                text: "La categoría se ha añadido correctamente",
+                                text: "La desarrolladora se ha modificado correctamente",
                                 icon: "success",
                                 confirmButtonText: "Continuar"
                             }).then((result) => {
-                                window.location = "?cmd=categoria";
+                                window.location = "?cmd=desarrolladora";
                             });
                         } else {
                             Swal.fire({
                                 title: "Oh My Games",
-                                text: "La categoría no se pudo añadir, contacte con el servicio técnico",
+                                text: "La desarrolladora no se pudo modificar, contacte con el servicio técnico",
                                 icon: "error",
                                 confirmButtonText: "Continuar"
                             }).then((result) => {
-                                window.location = "?cmd=categoria";
+                                window.location = "?cmd=desarrolladora";
                             });
                         }
                     } else {
                         Swal.fire({
                             title: "Oh My Games",
-                            text: "La categoría introducida ya existe",
+                            text: "La desarrolladora introducida ya existe",
                             icon: "info",
                             confirmButtonText: "Continuar"
                         }).then((result) => {
-                            window.location = "?cmd=categoria";
+                            window.location = "?cmd=desarrolladora";
                         });
                     }
                 });
     }
 });
+
 
 function validarCampoVacio(campo, errorDiv, errorP, msj) {
     if (campo.value === "" || campo.value === null) {

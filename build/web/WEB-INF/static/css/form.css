@@ -4,14 +4,17 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 26 may. 2022, 23:07:39
+    Created on : 27 may. 2022, 23:06:49
     Author     : Luis Alejandro Rodríguez Fernández - luisalejandro.rodriguez.alum@iescamp.es
 */
 
-#delCat{
+#error{
     visibility: hidden;
-}
-
-#delDes{
-    visibility: hidden;
+    color : white;
+    background-color: rgba(250,50,50,0.7);
+    padding: 7px;
+    margin-bottom:10px;
+    width: 350px;
+    text-align: center;
+    height: 30px;
 }

@@ -187,12 +187,28 @@ public class MainBLL {
         return dao.obtenerCategorias(id);
     }
 
-    public boolean modificarCategoria(int id,String nombre) {
-        return dao.modificarCategoria(id,nombre);
+    public boolean modificarCategoria(int id, String nombre) {
+        return dao.modificarCategoria(id, nombre);
     }
 
     public boolean borrarCategoria(int id) {
         return dao.borrarCategoria(id);
+    }
+
+    public Desarrolladora obtenerDesarrolladora(int id) {
+        return dao.obtenerDesarrolladora(id);
+    }
+
+    public boolean añadirDesarolladora(String nombre) {
+        return dao.añadirDesarrolladora(nombre);
+    }
+
+    public boolean modificarDesarrolladora(int id, String nombre) {
+        return dao.modificarDesarrolladora(id, nombre);
+    }
+
+    public boolean borrarDesarrolladora(int id) {
+        return dao.borrarDesarrolladora(id);
     }
 
 }
