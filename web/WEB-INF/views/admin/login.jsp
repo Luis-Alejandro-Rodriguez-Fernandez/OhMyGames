@@ -18,6 +18,7 @@
         <jsp:include page="../../partials/header.jsp"/>
         <main>
             <div id="error"><p></p></div>  
+            <p>HE VUELTO MUAJAJAJA</p>
             <form id="form" method="POST" action="?cmd=login&op=proceso">
                 <h2>Inicio de Sesión</h2>
                 <div class="field">
