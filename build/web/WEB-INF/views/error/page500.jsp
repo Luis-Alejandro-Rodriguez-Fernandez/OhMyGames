@@ -9,12 +9,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>500 - Oh My Games</title>
         <link rel="stylesheet" href="public/css/general.css"/>
         <link rel="stylesheet" href="public/css/error.css"/>
         <link href="public/img/logo.png" rel="icon" type="image/x-icon" />
-        <title>Oh My Games</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:include page="../../partials/header.jsp"/>
+        <main>
+            <h1>500</h1>
+            <h2>Error interno.</h2>
+            <h3>Contacte con el administrador.</h3>
+        </main>
+        <jsp:include page="../../partials/footer.jsp"/>
     </body>
 </html>
