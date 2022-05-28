@@ -16,6 +16,7 @@
     </head>
     <body>
         <jsp:include page="../../partials/header.jsp"/>
+        <p>HOLIWI JEJE :D</p>
         <main>
             <div id="error"><p></p></div>  
             <form id="form" method="POST" action="?cmd=login&op=proceso">
