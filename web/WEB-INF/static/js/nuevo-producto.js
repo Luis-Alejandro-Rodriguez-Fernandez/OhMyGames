@@ -8,14 +8,14 @@ let desc = document.getElementById("descripcion");
 let precio = document.getElementById("precio");
 let descuento = document.getElementById("descuento");
 let date = document.getElementById("date");
-let img = document.getElementById("imga");
 let errorDiv = document.querySelector("#error");
 let errorP = document.querySelector("#error p");
+let img = document.getElementById("imga");
 let imgaUp = document.getElementById("imgUp");
+let imgLoad = document.getElementById("imgLoad");
 let form = document.getElementById("form");
 let imgBase64;
 let add = document.getElementById("add");
-let imgLoad = document.getElementById("imgLoad");
 
 img.addEventListener("change", () => {
     imgBase64 = getBase64Image();
