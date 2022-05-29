@@ -98,15 +98,6 @@
         <script type="text/javascript">
       const btn = document.getElementById('button');
 
-//document.addEventListener("DOMContentLoaded",()=>{
-//    let user = document.getElementById("user_name");
-//    let msg = document.getElementById("message");
-//    let userMail = document.getElementById("user_email");
-//    user.value="Luis";
-//    msg.textContent="prueba<br>prueba<br>prueba";
-//    userMail.value="2001luisalejandro@gmail.com";
-////    btn.click();
-//});
 
 document.getElementById('form').addEventListener('submit', function(event) {
    event.preventDefault();
