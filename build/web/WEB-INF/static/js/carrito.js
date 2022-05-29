@@ -1,4 +1,5 @@
 /* global fetch */
+
 let btnDel = document.getElementById("btn-del");
 let main = document.getElementById("main");
 let comprar = document.getElementById("comprar");
@@ -17,7 +18,9 @@ let year = document.getElementById("year");
 let seg = document.getElementById("seg");
 let carrito = [];
 let importe = 0;
-
+let usuarioNombre;
+let usuarioEmail;
+let carritoMail;
 //Fecha
 let d = new Date();
 let mesd = d.getMonth();
@@ -36,13 +39,14 @@ creditCheck.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+    traerUsuario();
     carritoUsuario();
 });
 
 
 comprar.addEventListener("click", () => {
     comprarCarrito();
-    comprar.style.display="none";
+    comprar.style.display = "none";
 });
 
 
@@ -62,34 +66,45 @@ comprarCard.addEventListener("click", () => {
                 .then(res => res.json())
                 .then(json => {
                     if (json.value !== false) {
-                        if(json.value){
-                        Swal.fire({
-                            title: "Oh My Games",
-                            text: "La operacion se ha finalizado con éxito",
-                            icon: "success",
-                            confirmButtonText: "Continuar"
-                        }).then((result) => {
-                            payCont.style.display = "none";
-                            carritoUsuario();
-                            window.location="?cmd=landing";
-                        });
-                    }else{
-                        Swal.fire({
-                            title: "Oh My Games",
-                            text: "La operacion no pudo completarse, intentelo de nuevo más tarde",
-                            icon: "error",
-                            confirmButtonText: "Continuar"
-                        }).then((result) => {
-                        });
-                    }
+                        if (json.value) {
+                            Swal.fire({
+                                title: "Oh My Games",
+                                text: "La operacion se ha finalizado con éxito",
+                                icon: "success",
+                                confirmButtonText: "Continuar"
+                            }).then((result) => {
+
+                                payCont.style.display = "none";
+//                                carritoUsuario();
+
+                                let user = document.getElementById("user_name");
+                                let msg = document.getElementById("message");
+                                let userMail = document.getElementById("user_email");
+                                user.value = usuarioNombre;
+                                msg.textContent = carritoMail;
+                                userMail.value = usuarioEmail;
+
+                                btn.click();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Oh My Games",
+                                text: "La operacion no pudo completarse, intentelo de nuevo más tarde",
+                                icon: "error",
+                                confirmButtonText: "Continuar"
+                            }).then((result) => {
+                                window.location = "?cmd=landing";
+                            });
+                        }
                     } else {
-                       Swal.fire({
+                        Swal.fire({
                             title: "Oh My Games",
                             text: "Estamos teniendo problemas con el servidor, intentelo de nuevo más tarde",
                             icon: "error",
                             confirmButtonText: "Continuar"
                         }).then((result) => {
-                        }); 
+                            window.location = "?cmd=landing";
+                        });
                     }
                 });
     }
@@ -112,8 +127,32 @@ function carritoUsuario() {
             .then(res => res.json())
             .then(json => {
                 if (json.value !== null) {
-                     importe = 0;
-                    carrito = json.producto;
+                    importe = 0;
+                    carrito = json;
+
+                    //Formatear productos mail
+                    carritoMail = "";
+
+                    console.log(usuarioEmail);
+            
+                    if (carrito.length > 1) {
+
+                        for (let i = 0; i < carrito.length; i++) {
+                            if (i === 0) {
+                                carritoMail += `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio).toFixed(2)} €`;
+                            } else if (i === (carrito.length - 1)) {
+                                carritoMail += `<br>- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio).toFixed(2)} €`;
+                            } else {
+                                carritoMail += "<br>" + `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio).toFixed(2)} €`;
+                            }
+                        }
+
+                    } else {
+                        carritoMail = `- ${carrito.producto.nombre} | ${(carrito.producto.precio).toFixed(2)} €`;
+                    }
+
+                    console.log(carritoMail);
+
                     let cont = 0;
                     main.innerHTML = "";
                     try {
@@ -157,39 +196,39 @@ function carritoUsuario() {
                         });
                         paymentMethod();
                     } catch (e) {
-//                        let section = document.createElement("section");
-//                        let name = document.createElement("h3");
-//                        let price = document.createElement("p");
-//                        let img = document.createElement("img");
-//                        let a = document.createElement("a");
-//                        let del = document.createElement("del");
-//                        let desc = document.createElement("span");
-//                        let x = document.createElement("h5");
-//
-//                        main.appendChild(section);
-//                        section.appendChild(a);
-//                        section.appendChild(x);
-//                        a.appendChild(name);
-//                        a.appendChild(img);
-//                        a.appendChild(price);
-//                        a.appendChild(del);
-//                        a.appendChild(desc);
-//                        
-//                            importe += parseFloat((json.producto.precio - (json.producto.precio * json.producto.descuento / 100)).toFixed(2));
-//                        a.href = "?cmd=producto-consulta&id=" + json.producto.id;
-//                        img.src = json.producto.imagen;
-//                        name.textContent = json.producto.nombre;
-//                        price.textContent = (json.producto.precio - (json.producto.precio * json.producto.descuento / 100)).toFixed(2) + " €";
-//                        del.textContent = (json.producto.precio).toFixed(2);
-//                        desc.textContent = json.producto.descuento + "%";
-//                        x.textContent = "X";
-//
-//                        x.addEventListener("click", () => {
-//                            borrarProductoCarrito(json.producto.nombre);
-//                        });
-//                        paymentMethod();
+                        let section = document.createElement("section");
+                        let name = document.createElement("h3");
+                        let price = document.createElement("p");
+                        let img = document.createElement("img");
+                        let a = document.createElement("a");
+                        let del = document.createElement("del");
+                        let desc = document.createElement("span");
+                        let x = document.createElement("h5");
+
+                        main.appendChild(section);
+                        section.appendChild(a);
+                        section.appendChild(x);
+                        a.appendChild(name);
+                        a.appendChild(img);
+                        a.appendChild(price);
+                        a.appendChild(del);
+                        a.appendChild(desc);
+
+                        importe += parseFloat((json.producto.precio - (json.producto.precio * json.producto.descuento / 100)).toFixed(2));
+                        a.href = "?cmd=producto-consulta&id=" + json.producto.id;
+                        img.src = json.producto.imagen;
+                        name.textContent = json.producto.nombre;
+                        price.textContent = (json.producto.precio - (json.producto.precio * json.producto.descuento / 100)).toFixed(2) + " €";
+                        del.textContent = (json.producto.precio).toFixed(2);
+                        desc.textContent = json.producto.descuento + "%";
+                        x.textContent = "X";
+
+                        x.addEventListener("click", () => {
+                            borrarProductoCarrito(json.producto.nombre);
+                        });
+                        paymentMethod();
                     }
-                    importeCont.textContent = importe.toFixed(2)+" €";
+                    importeCont.textContent = importe.toFixed(2) + " €";
                 } else {
                     main.innerHTML = "";
                     let h3 = document.createElement("h3");
@@ -280,3 +319,30 @@ function validarCampoVacio(campo, errorDiv, errorP, msj) {
         return true;
     }
 }
+
+function traerUsuario() {
+    fetch("?svc=traer-usuario").then(res => res.json())
+            .then(json => {
+                usuarioNombre = json.usuario;
+                usuarioEmail = json.email;
+            });
+}
+
+////Enviar correo
+//    document.getElementById('form').addEventListener('submit', function (event) {
+//        event.preventDefault();
+//
+//        console.log("buu");
+//
+//        const serviceID = 'default_service';
+//        const templateID = 'template_u5mxylk';
+//
+//        emailjs.sendForm(serviceID, templateID, this)
+//                .then(() => {
+//                    btn.value = 'Send Email';
+//                    alert('Sent!');
+//                }, (err) => {
+//                    btn.value = 'Send Email';
+//                    alert(JSON.stringify(err));
+//                });
+//    });

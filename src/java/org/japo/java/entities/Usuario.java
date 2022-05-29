@@ -91,7 +91,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "{\"id\":" + id + ",\"usuario\":\"" + user + "\",\"pass\":\"" + password + "\",\"email\":\"" + email + "\",\"avatar\":\"" + avatar + "\",\"grupo\":" + grupo + "}";
+        return "{\"id\":" + id + ",\"usuario\":\"" + user + "\",\"pass\":\"" + password + "\",\"email\":\"" + email + "\",\"grupo\":" + grupo + "}";
     }
 
 }

@@ -11,6 +11,7 @@ let btnPre = document.getElementById("btn-pre");
 let usuario = document.getElementById("user-id");
 let insert = document.getElementById("insert");
 let mod = document.getElementById("mod");
+let formMail = document.getElementById("formMail");
 
 //Cap 32 units
 const LIMIT = 12;
@@ -260,12 +261,26 @@ function contarProductos() {
 }
 
 
-let test = document.getElementById("test");
+//let test = document.getElementById("test");
+//
+//test.addEventListener("click",()=>{
+//
 
-test.addEventListener("click",()=>{
-    fetch("?svc=correo")
-            .then(res=> res.json())
-            .then(json =>{
-        console.log(json.res)
-    });
-});
+//   
+////   formMail.appendChild(user);
+////   formMail.appendChild(msg);
+////   formMail.appendChild(userMail);
+//   
+////   user.setAttribute("id","user_name");
+////   msg.setAttribute("id","message");
+////   userMail.setAttribute("id","user_email");
+//   
+////   formMail.style.position="absolute";
+////   formMail.style.zIndex="-15";
+////   formMail.style.visibility="hidden";
+//   
+
+//   
+//   enviarEmail();
+//   
+//});

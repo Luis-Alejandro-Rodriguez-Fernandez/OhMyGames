@@ -45,13 +45,13 @@ List<Desarrolladora> desarrolladoras = (List<Desarrolladora>) request.getAttribu
                 <button id="btn-pre"><img src="public/img/lupa.png" alt="lupa"/></button>
             </div>
         </nav>
-            <button id="test" hidden="true" >Test</button>
+
         <main>
             <div id="cards"></div>
         </main>
         <nav id="pag"></nav>
-            <jsp:include page="../../partials/footer.jsp"/>
-        <script src="public/js/landing.js"></script>
+        <jsp:include page="../../partials/footer.jsp"/>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
+        <script src="public/js/landing.js"></script>
     </body>
 </html>

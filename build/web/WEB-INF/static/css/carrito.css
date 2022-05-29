@@ -22,7 +22,7 @@ main {
 }
 
 #main > section {
-    width: 90%;
+    width: 80%;
     padding: 1em;
 
     border-bottom: 1px solid white;
@@ -85,9 +85,9 @@ section > a > div:nth-child(3) > p{
     width: 40%;
     height: 50em;
     color: white;
-    
+
     margin-bottom: 28em;
-    
+
     background-color: rgba(225,225,225,.5);
     border-radius: 1em;
     padding: 2em;
@@ -110,13 +110,13 @@ section > a > div:nth-child(3) > p{
     background-color: #104BB6;
     border: 1px solid white;
     border-radius: 1em;
-    
+
     cursor:pointer;
 
     padding: 1em;
     margin: 1em;
 
-/*    width: 6em;*/
+    /*    width: 6em;*/
 }
 
 #paymentDiv {
@@ -127,16 +127,16 @@ section > a > div:nth-child(3) > p{
     background-color: #ff3333;
     margin: 1em;
     padding: .5em;
-    
+
     height: 30px;
-    
+
     visibility: hidden;
 }
 
 #ratio {
     display: flex;
     justify-content: space-around;
-    
+
     margin-bottom: 1em;
 }
 
@@ -156,7 +156,7 @@ input[type="text"] {
 #ratio > div > label {
     cursor:pointer;
     margin-bottom: .5em;
-    
+
     border-bottom: 1px solid white;
     padding-bottom: .5em; 
 }
@@ -167,7 +167,7 @@ div.fieldset > label {
 
 #credit-card {
     border: 1px solid white;
-    
+
     padding: 1em;
 }
 
@@ -191,4 +191,13 @@ div.fieldset > label {
 
 #credit-card{
     display: none;
+}
+
+#form{
+    visibility: hidden;
+}
+
+#aside{
+    position: fixed;
+    right:1em;
 }
