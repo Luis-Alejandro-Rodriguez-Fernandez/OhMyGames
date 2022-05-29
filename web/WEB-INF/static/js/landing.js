@@ -11,7 +11,6 @@ let btnPre = document.getElementById("btn-pre");
 let usuario = document.getElementById("user-id");
 let insert = document.getElementById("insert");
 let mod = document.getElementById("mod");
-let formMail = document.getElementById("formMail");
 
 //Cap 32 units
 const LIMIT = 12;

@@ -211,4 +211,19 @@ public class MainBLL {
         return dao.borrarDesarrolladora(id);
     }
 
+    public long contarCategorias() {
+        return dao.contarCategorias();
+    }
+
+    public long contarDesarrolladoras() {
+        return dao.contarDesarrolladoras();
+    }
+
+    public List<Categoria> listarCategoriasPagina(int offset, int limit) {
+        return dao.listarCategoriaPagina(offset,limit);
+    }
+    public List<Desarrolladora> listarDesarrolladorasPagina(int offset, int limit) {
+        return dao.listarDesarrolladorasPagina(offset,limit);
+    }
+
 }

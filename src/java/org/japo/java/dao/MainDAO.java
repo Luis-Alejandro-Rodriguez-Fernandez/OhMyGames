@@ -1941,8 +1941,8 @@ public class MainDAO {
         Desarrolladora d = null;
 
         // Obtención del Contexto
-        try { 
-           // Contexto Inicial para operaciones de nombrado JNDI
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
             Context iniCtx = new InitialContext();
 
             // Contextualizar el contexto
@@ -1953,7 +1953,7 @@ public class MainDAO {
 
             try (
                      Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
-                ps.setInt(1,_id);
+                ps.setInt(1, _id);
                 // Obtener Productos
                 try ( ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
@@ -1975,7 +1975,7 @@ public class MainDAO {
         return d;
     }
 
-        public boolean añadirDesarrolladora(String nombre) {
+    public boolean añadirDesarrolladora(String nombre) {
         final String SQL = "INSERT INTO desarrolladoras "
                 + "(nombre,director) "
                 + "VALUES (?,'');";
@@ -2077,7 +2077,7 @@ public class MainDAO {
         return numReg == 1;
 
     }
-    
+
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Grupo">
     public List<Grupo> listarGrupos() {
@@ -2123,5 +2123,170 @@ public class MainDAO {
         return lista;
     }
     //</editor-fold>
+
+    public long contarCategorias() {
+        // SQL
+        final String SQL = "SELECT * FROM categorias";
+
+        // Lista de Productos vacía
+        long filas = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Obtener Productos
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+                        if (rs.next()) {
+                            filas = rs.getLong(1);
+                        }
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        // Devolder la lista de Productos
+        return filas;
+    }
+    
+    public long contarDesarrolladoras() {
+        // SQL
+        final String SQL = "SELECT * FROM desarrolladoras";
+
+        // Lista de Productos vacía
+        long filas = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Obtener Productos
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+                        if (rs.next()) {
+                            filas = rs.getLong(1);
+                        }
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        // Devolder la lista de Productos
+        return filas;
+    }
+
+    public List<Categoria> listarCategoriaPagina(int offset, int limit) {
+            // SQL
+        final String SQL = "SELECT * FROM categorias LIMIT ?,?";
+
+        // Lista de Productos vacía
+        List<Categoria> lista = new ArrayList<>();
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                // Obtener Productos
+                ps.setInt(1,offset);
+                ps.setInt(2,limit);
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+                        int id = rs.getInt("id");
+                        String nombre = rs.getString("nombre");
+                        String descripcion = rs.getString("descripcion");
+
+                        // Instanciar Producto
+                        Categoria c = new Categoria(id, nombre, descripcion);
+                        // Producto > Lista
+                        lista.add(c);
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        // Devolder la lista de Productos
+        return lista;
+    }
+    
+    public List<Desarrolladora> listarDesarrolladorasPagina(int offset, int limit){
+      // SQL
+        final String SQL = "SELECT * FROM desarrolladoras LIMIT ?,?";
+
+        // Lista de Productos vacía
+        List<Desarrolladora> lista = new ArrayList<>();
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1, offset);
+                ps.setInt(2, limit);
+                // Obtener Productos
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+                        int id = rs.getInt("id");
+                        String nombre = rs.getString("nombre");
+
+                        // Instanciar Producto
+                        Desarrolladora d = new Desarrolladora(id, nombre);
+                        // Producto > Lista
+                        lista.add(d);
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        // Devolder la lista de Productos
+        return lista;
+    }
 
 }

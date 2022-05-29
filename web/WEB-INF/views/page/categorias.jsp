@@ -24,17 +24,8 @@ List<Categoria> cs = (List<Categoria>) request.getAttribute("categorias");
         <main>
             <p id="delCat"><%= request.getSession(false).getAttribute("delCat") != null ? request.getSession(false).getAttribute("delCat") : null%></p>
             <a href="?cmd=categoria-nueva">Añadir Categoria</a>
-            <%for(Categoria c : cs){%>
-
-            <section>
-                <%= c.getNombre() %>
-                <article>
-                    <a href="?cmd=categoria-modificar&id=<%=c.getId()%>">Mod</a>
-                    <a href="?cmd=categoria-borrar&id=<%=c.getId()%>">Borrar</a>
-                </article>
-            </section>
-
-            <%}%>
+            <div id="main"></div>
+            <nav id="nav"></nav>
         </main>
         <jsp:include page="../../partials/footer.jsp"/>
         <script src="public/js/categoria.js"></script>

@@ -26,17 +26,8 @@ List<Desarrolladora> ds = (List<Desarrolladora>) request.getAttribute("desarroll
         <main>
             <p id="delDes"><%= request.getSession(false).getAttribute("delDes") != null ? request.getSession(false).getAttribute("delDes") : null%></p>
             <a href="?cmd=desarrolladora-nueva">Añadir Desarrolladora</a>
-            <%for(Desarrolladora d : ds){%>
-
-            <section>
-                <%= d.getNombre() %>
-                <article>
-                    <a href="?cmd=desarrolladora-modificar&id=<%=d.getId()%>">Mod</a>
-                    <a href="?cmd=desarrolladora-borrar&id=<%=d.getId()%>">Borrar</a>
-                </article>
-            </section>
-
-            <%}%>
+            <div id="main"></div>
+            <nav id="nav"></nav>
         </main>
         <jsp:include page="../../partials/footer.jsp"/>
         <script src="public/js/desarrolladora.js"></script>
