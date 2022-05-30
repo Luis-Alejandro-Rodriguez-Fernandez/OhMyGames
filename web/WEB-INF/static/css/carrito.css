@@ -25,7 +25,7 @@ main {
     width: 80%;
     padding: 1em;
 
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--bordeblanco);
 
     position: relative;
 }
@@ -54,8 +54,8 @@ section > a {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding:30px;
-    background-color: rgba(25,25,25,0.8);
+    padding: 20px;
+    background-color: var(--fondoblanco);
     border-radius: 10px;
 }
 
@@ -156,8 +156,10 @@ input[type="text"] {
 #ratio > div > label {
     cursor:pointer;
     margin-bottom: .5em;
+    
+    font-size: 1.5em;
 
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--bordeblanco);
     padding-bottom: .5em; 
 }
 
@@ -187,6 +189,7 @@ div.fieldset > label {
 
 #paypal-container{
     display: none;
+    margin-top: 2em;
 }
 
 #credit-card{

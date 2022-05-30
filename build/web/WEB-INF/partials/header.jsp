@@ -22,7 +22,7 @@
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header>
-    <a href="?cmd=landing"><img id="logo" src="public/img/logo.png" alt="logo"/></a>
+    <a href="?cmd=landing"><img id="logo" src="public/img/OhMyGames.png" alt="logo"/></a>
     <div>
         <form id="barra" method="POST" action="?cmd=producto-buscado">
             <input id="finder" name="finder" type="text" autocomplete="off"/>
@@ -72,22 +72,25 @@
 
         width: 100%;
         height: 4em;
-        font-size: 1em;
 
-        background-color: black;
+        background-color: var(--azuloscuro01);
         color: white;
 
         display: flex;
         align-items: center;
         justify-content: space-around;
 
-        border-bottom: 1px solid rgba(255, 250, 250, 0.7);
+        border-bottom: 1px solid var(--bordeblanco);
+    }
+    
+    header p {
+        font-size: 1.3em;
     }
 
     #logo { 
         width: 115px;
-        position: relative;
-        top:-8px;
+/*        position: relative;
+        top:-8px;*/
     }
 
     header a {
@@ -122,7 +125,7 @@
         justify-content: center;
         text-align: justify;
 
-        background-color: #1b1b1b; 
+        background-color: var(--azuloscuro02); 
 
         position: absolute;
         top: 2.1em;
@@ -138,7 +141,7 @@
         padding: 1em 0 1.5em 0;
         /*margin-top: .2em;*/
 
-        border-bottom: 1px solid rgba(255, 250, 250, 0.7);
+        border-bottom: 1px solid var(--bordeblanco);
     }
 
     #list-look li:hover {
@@ -152,7 +155,7 @@
         bottom:0;
         right: 0;
         height: calc(100% - 60px);
-        background-color: #1b1b1b;
+        background-color: black;
         z-index: 100;
         transition: all 0.3s ease-in-out;
         width: 0;

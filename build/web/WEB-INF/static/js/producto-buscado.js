@@ -43,28 +43,32 @@ function mostrarProductos(offset, limit, name) {
 
                         //Creacion de elementos
                         let card = document.createElement("div");
-                        let cardDiv = document.createElement("div");
+                        let cardDiv1 = document.createElement("div");
+                        let cardDiv2 = document.createElement("div");
+                        let prcDiv = document.createElement("div");
                         let delDiv = document.createElement("div");
                         let name = document.createElement("h3");
                         let price = document.createElement("p");
                         let img = document.createElement("img");
+                        let desc = document.createElement("span");
                         let a = document.createElement("a");
                         let del = document.createElement("del");
                         let em = document.createElement("p");
-                        let desc = document.createElement("span");
 
                         //Enganche de elementos
                         cards.appendChild(a);
 
                         a.appendChild(card);
-                        card.appendChild(img);
-                        card.appendChild(cardDiv);
-                        cardDiv.appendChild(name);
-                        cardDiv.appendChild(price);
-                        cardDiv.appendChild(delDiv);
-                        delDiv.appendChild(desc);
+                        card.appendChild(cardDiv1);
+                        card.appendChild(cardDiv2);
+                        cardDiv1.appendChild(img);
+                        cardDiv1.appendChild(desc);
+                        cardDiv2.appendChild(name);
+                        cardDiv2.appendChild(prcDiv);
+                        prcDiv.appendChild(delDiv);
                         delDiv.appendChild(del);
                         delDiv.appendChild(em);
+                        prcDiv.appendChild(price);
 
                         //Personalizacion de elementos
                         a.href = "?cmd=producto-consulta&id=" + producto.id;

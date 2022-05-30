@@ -34,7 +34,7 @@ main{
 main form{
     width: 700px;
     height: 650px; 
-    background-color: black; 
+    background-color: var(--fondoblanco); 
     display: flex;
     flex-wrap:wrap;
     padding: 20px;

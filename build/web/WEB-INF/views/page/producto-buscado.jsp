@@ -20,14 +20,14 @@ if(name.isEmpty()){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Búsqueda - Oh My Games</title>
         <link rel="stylesheet" href="public/css/general.css"/>
-        <link rel="stylesheet" href="public/css/landing.css"/>
+        <link rel="stylesheet" href="public/css/busqueda.css"/>
         <link href="public/img/logo.png" rel="icon" type="image/x-icon" />
     </head>
     <body>
         <jsp:include page="../../partials/header.jsp"/>
         <main>
-            <a href="?cmd=landing"><- Voler</a>
-            <p>"<h2 id="name"><%=name%></h2>"</p>
+            <a href="?cmd=landing">🠔 Volver</a>
+            <p>Has buscado: "<span id="name"><%=name%></span>"</p>
             <div id="cards">
             </div>
         </main>

@@ -10,14 +10,14 @@
         <a href="https://www.instagram.com/" target="_blank"><img src="public/img/instagram.png" alt="Instagram"/></a>
     </div>
     <div>
-        <h3>© Copyright 2022. Oh My Games.</h3>
-        <h3>Todos los derechos reservados.</h3>
+        <h3>© Copyright 2022.</h3>
+        <h3>Luis Alejandro Rodríguez Fernández.</h3>
     </div>
 </footer>
 <style>
     footer{
-        background-color: black;
-        border-top: 1px solid rgba(255, 250, 250, 0.7);
+        background-color: var(--azuloscuro01);
+        border-top: 1px solid var(--bordeblanco);
         color: white;
         
         font-size: 12px;
