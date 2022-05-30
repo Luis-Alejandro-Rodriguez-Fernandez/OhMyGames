@@ -139,19 +139,18 @@ function carritoUsuario() {
 
                         for (let i = 0; i < carrito.length; i++) {
                             if (i === 0) {
-                                carritoMail += `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio).toFixed(2)} €`;
+                                carritoMail += `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento/100)).toFixed(2)} €`;
                             } else if (i === (carrito.length - 1)) {
-                                carritoMail += `<br>- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio).toFixed(2)} €`;
+                                carritoMail += `<br>- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento/100)).toFixed(2)} €`;
                             } else {
-                                carritoMail += "<br>" + `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio).toFixed(2)} €`;
+                                carritoMail += "<br>" + `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento/100)).toFixed(2)} €`;
                             }
                         }
 
                     } else {
-                        carritoMail = `- ${carrito.producto.nombre} | ${(carrito.producto.precio).toFixed(2)} €`;
+                        carritoMail = `- ${carrito.producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento/100)).toFixed(2)} €`;
                     }
 
-                    console.log(carritoMail);
 
                     let cont = 0;
                     main.innerHTML = "";

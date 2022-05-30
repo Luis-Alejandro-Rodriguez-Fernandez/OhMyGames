@@ -118,7 +118,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     .then(() => {
         Swal.fire({
          title: "Oh My Games",
-         text: "Pronto recibirá un correo con información de su pedido",
+         text: "Pronto recibirá un correo con la información de su pedido",
          icon: "success",
          confirmButtonText: "Continuar"
     }).then((result) => {
@@ -167,6 +167,14 @@ document.getElementById('form').addEventListener('submit', function(event) {
                                                 icon: "success",
                                                 confirmButtonText: "Continuar"
                                             }).then((result) => {
+                                                
+                                                let user = document.getElementById("user_name");
+                                                let msg = document.getElementById("message");
+                                                let userMail = document.getElementById("user_email");
+                                                user.value = usuarioNombre;
+                                                msg.textContent = carritoMail;
+                                                userMail.value = usuarioEmail;
+
                                                 btn.click();
                                                 carritoUsuario();
                                             });
