@@ -131,7 +131,7 @@ public class MainDAO {
                 + " FROM productos p "
                 + "LEFT JOIN categorias c on c.id = p.categoria"
                 + " LEFT JOIN desarrolladoras d on d.id = p.desarrolladora "
-                + "WHERE precio*descuento/100 BETWEEN ? AND ?";
+                + "WHERE precio - (precio*descuento/100) BETWEEN ? AND ?";
 
         if (cat > 0) {
             sql += " AND categoria = " + cat;
@@ -337,7 +337,7 @@ public class MainDAO {
 
     public int contarProcutos(int cat, int des, int tipo, double min, double max) {
         // SQL
-        String sql = "SELECT * FROM productos WHERE precio*descuento/100 BETWEEN ? AND ?";
+        String sql = "SELECT * FROM productos WHERE precio - (precio*descuento/100) BETWEEN ? AND ?";
 
         if (cat > 0) {
             sql += " AND categoria = " + cat;

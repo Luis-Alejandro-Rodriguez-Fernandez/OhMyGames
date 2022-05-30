@@ -51,13 +51,13 @@ descuento.addEventListener("input", () => {
     if (parseInt(descuento.value) >= 99) {
         descuento.value = 99;
     } else if (parseInt(descuento.value) <= 0) {
-        descuento.value = 0;
+        descuento.value = 5;
     }
 });
 
 descuento.addEventListener("blur", () => {
     if (descuento.value == "" || descuento.value == null) {
-        descuento.value = 0;
+        descuento.value = 5;
     }
 });
 

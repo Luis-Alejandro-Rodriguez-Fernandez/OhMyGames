@@ -134,7 +134,7 @@ function mostrarProductos(offset, limit, cat, des, tipo, min, max) {
                     if (admin && offset === 0) {
                         let card = document.createElement("div");
                         let a = document.createElement("a");
-                        let ico = document.createElement("h4");
+                    let ico = document.createElement("h4");
                         let p = document.createElement("p");
 
                         cards.appendChild(a);
