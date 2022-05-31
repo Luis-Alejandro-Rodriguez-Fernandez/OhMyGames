@@ -118,7 +118,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     .then(() => {
         Swal.fire({
          title: "Oh My Games",
-         text: "Pronto recibirá un correo con la información de su pedido",
+         text: "Pronto recibirá un correo con la  información de su pedido",
          icon: "success",
          confirmButtonText: "Continuar"
     }).then((result) => {
