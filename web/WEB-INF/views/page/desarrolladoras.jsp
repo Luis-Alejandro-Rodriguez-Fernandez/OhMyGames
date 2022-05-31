@@ -8,8 +8,8 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    
-List<Desarrolladora> ds = (List<Desarrolladora>) request.getAttribute("desarrolladoras");
+
+    List<Desarrolladora> ds = (List<Desarrolladora>) request.getAttribute("desarrolladoras");
 
 %>
 <!DOCTYPE html>
@@ -25,7 +25,10 @@ List<Desarrolladora> ds = (List<Desarrolladora>) request.getAttribute("desarroll
         <jsp:include page="../../partials/header.jsp"/>
         <main>
             <p id="delDes"><%= request.getSession(false).getAttribute("delDes") != null ? request.getSession(false).getAttribute("delDes") : null%></p>
-            <a href="?cmd=desarrolladora-nueva">Añadir Desarrolladora</a>
+            <div>
+                <h2>Desarrolladoras</h2>
+                <a href="?cmd=desarrolladora-nueva">Añadir Desarrolladora</a> 
+            </div>
             <div id="main"></div>
             <nav id="nav"></nav>
         </main>

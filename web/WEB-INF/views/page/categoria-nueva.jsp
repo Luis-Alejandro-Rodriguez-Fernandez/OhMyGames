@@ -19,9 +19,9 @@
 
         <main>
         <div id="error"><p></p></div>
-            <a href="?cmd=categoria">volver</a>
+            <a href="?cmd=categoria">🠔 Volver</a>
             <form id="form">
-                <div>
+                <div class="field">
                     <label for="nombre">Nombre</label>
                     <input type="text" id="nombre" name="nombre">
                 </div>

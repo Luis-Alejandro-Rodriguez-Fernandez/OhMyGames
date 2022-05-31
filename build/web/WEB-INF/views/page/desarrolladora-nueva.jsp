@@ -18,9 +18,9 @@
         <jsp:include page="../../partials/header.jsp"/>
         <main>
             <div id="error"><p></p></div>
-            <a href="?cmd=desarrolladora">volver</a>
+            <a href="?cmd=desarrolladora">🠔 Volver</a>
             <form id="form">
-                <div>
+                <div class="field">
                     <label for="nombre">Nombre</label>
                     <input type="text" id="nombre" name="nombre">
                 </div>

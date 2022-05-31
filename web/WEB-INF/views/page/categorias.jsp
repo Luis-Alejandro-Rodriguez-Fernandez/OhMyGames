@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-List<Categoria> cs = (List<Categoria>) request.getAttribute("categorias");
+    List<Categoria> cs = (List<Categoria>) request.getAttribute("categorias");
 %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,10 @@ List<Categoria> cs = (List<Categoria>) request.getAttribute("categorias");
         <jsp:include page="../../partials/header.jsp"/>
         <main>
             <p id="delCat"><%= request.getSession(false).getAttribute("delCat") != null ? request.getSession(false).getAttribute("delCat") : null%></p>
-            <a href="?cmd=categoria-nueva">Añadir Categoria</a>
+            <div>
+                <h2>Categorías</h2>
+                <a href="?cmd=categoria-nueva">Añadir Categoría</a>
+            </div>
             <div id="main"></div>
             <nav id="nav"></nav>
         </main>
