@@ -4,7 +4,7 @@ let delCat = document.getElementById("delCat");
 let main = document.getElementById("main");
 let nav = document.getElementById("nav");
 
-const LIMIT = 10;
+const LIMIT = 9;
 let offset = 0;
 let paginas = 0;
 
@@ -57,7 +57,6 @@ function mostrarCategorias(offset, limit) {
     fetch("?svc=categoria-paginas&offset=" + offset + "&limit=" + limit)
             .then(res => res.json())
             .then(json => {
-                console.log(json)
                 main.innerHTML = "";
                 if (json.length > 1) {
                     json.forEach((categoria) => {
@@ -109,6 +108,8 @@ function mostrarCategorias(offset, limit) {
 
                                 mostrarCategorias((Math.ceil(paginas) - 1) * LIMIT, limit);
                             });
+                        } else {
+                            nav.style.display = "none";
                         }
                     });
                 } else {
@@ -131,6 +132,34 @@ function mostrarCategorias(offset, limit) {
                     aDel.textContent = "Borrar";
                     aDel.href = "?cmd=categoria-borrar&id=" + json.id;
                     nav.innerHTML = "";
+                    if (paginas > 1) {
+                        let btnI = document.createElement("a");
+                        nav.appendChild(btnI);
+                        btnI.textContent = "<<";
+                        btnI.addEventListener("click", () => {
+                            offset = 0;
+                            mostrarCategorias(offset, limit);
+                        });
+                        for (let i = 0; i < paginas; i++) {
+                            let btn = document.createElement("a");
+                            nav.appendChild(btn);
+                            btn.textContent = i + 1;
+                            btn.addEventListener("click", () => {
+                                offset = LIMIT * i;
+                                let limit = LIMIT;
+
+                                mostrarCategorias(offset, limit);
+                            });
+                        }
+                        let btnF = document.createElement("a");
+                        nav.appendChild(btnF);
+                        btnF.textContent = ">>";
+                        btnF.addEventListener("click", () => {
+                            let limit = LIMIT;
+
+                            mostrarCategorias((Math.ceil(paginas) - 1) * LIMIT, limit);
+                        });
+                    }
                 }
             });
 }

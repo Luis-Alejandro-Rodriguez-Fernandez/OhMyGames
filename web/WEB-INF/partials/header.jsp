@@ -82,15 +82,15 @@
 
         border-bottom: 1px solid var(--bordeblanco);
     }
-    
+
     header p {
         font-size: 1.3em;
     }
 
     #logo { 
         width: 115px;
-/*        position: relative;
-        top:-8px;*/
+        /*        position: relative;
+                top:-8px;*/
     }
 
     header a {
@@ -247,6 +247,10 @@
     let toggleNavStatus = false;
     let admin = false;
 
+document.addEventListener("DOMContentLoaded",()=>{
+    consultarAdmin();
+});
+
     //Menú
     if (menu !== null && menuH !== null && menuX !== null) {
         menuH.addEventListener("click", () => {
@@ -305,7 +309,7 @@
         let menuUl = document.querySelector("#menu ul");
         if (toggleNavStatus === false) {
             menuUl.style.visibility = "visible";
-            menu.style.width = "21vw";
+            menu.style.width = "350px";
             toggleNavStatus = true;
             menuX.style.display = "block";
             menuH.style.display = "none";
@@ -318,10 +322,11 @@
         }
     }
 
-    function consultarAdmin() {
-        fetch("?svc=consultar-grupo")
+  async function consultarAdmin() {
+        await fetch("?svc=consultar-grupo")
                 .then(res => res.json())
                 .then(json => {
+//                    console.log(json.admin)
                     if (json.admin) {
                         admin = true;
                     } else {

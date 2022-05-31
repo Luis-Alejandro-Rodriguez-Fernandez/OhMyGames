@@ -4,7 +4,7 @@ let delDes = document.getElementById("delDes");
 let main = document.getElementById("main");
 let nav = document.getElementById("nav");
 
-const LIMIT = 3;
+const LIMIT = 9;
 let offset = 0;
 let paginas = 0;
 
@@ -42,7 +42,6 @@ function contarDesarrolladoras() {
     fetch("?svc=contar-desarrolladoras")
             .then(res => res.json())
             .then(json => {
-                console.log(json)
                 if (json.value !== null) {
                     paginas = json.paginas / LIMIT;
                 }
@@ -57,7 +56,6 @@ function mostrarDesarrolladoras(offset, limit) {
     fetch("?svc=desarrolladora-paginas&offset=" + offset + "&limit=" + limit)
             .then(res => res.json())
             .then(json => {
-                console.log(json)
                 main.innerHTML = "";
                 if (json.length > 1) {
                     json.forEach((desarrolladora) => {
@@ -83,6 +81,7 @@ function mostrarDesarrolladoras(offset, limit) {
 
                         nav.innerHTML = "";
                         if (paginas > 1) {
+                        console.log(paginas);
                             let btnI = document.createElement("a");
                             nav.appendChild(btnI);
                             btnI.textContent = "<<";
@@ -109,29 +108,59 @@ function mostrarDesarrolladoras(offset, limit) {
 
                                 mostrarDesarrolladoras((Math.ceil(paginas) - 1) * LIMIT, limit);
                             });
+                        } else {
+                            nav.style.display = "none";
                         }
                     });
                 } else {
-                        let sect = document.createElement("section");
-                        let nom = document.createElement("h3");
-                        let div = document.createElement("div");
-                        let aDel = document.createElement("a");
-                        let aMod = document.createElement("a");
+                    let sect = document.createElement("section");
+                    let nom = document.createElement("h3");
+                    let div = document.createElement("div");
+                    let aDel = document.createElement("a");
+                    let aMod = document.createElement("a");
 
-                        main.appendChild(sect);
-                        sect.appendChild(nom);
-                        sect.appendChild(div);
+                    main.appendChild(sect);
+                    sect.appendChild(nom);
+                    sect.appendChild(div);
 
-                        div.appendChild(aMod);
-                        div.appendChild(aDel);
+                    div.appendChild(aMod);
+                    div.appendChild(aDel);
 
-                        nom.textContent = json.nombre;
-                        aMod.textContent = "Modificar";
-                        aMod.href = "?cmd=desarrolladora-modificar&id=" + json.id;
-                        aDel.textContent = "Borrar";
-                        aDel.href = "?cmd=desarrolladora-borrar&id=" + json.id;
+                    nom.textContent = json.nombre;
+                    aMod.textContent = "Modificar";
+                    aMod.href = "?cmd=desarrolladora-modificar&id=" + json.id;
+                    aDel.textContent = "Borrar";
+                    aDel.href = "?cmd=desarrolladora-borrar&id=" + json.id;
 
-                        nav.innerHTML = "";
+                    nav.innerHTML = "";
+                    if (paginas > 1) {
+                    console.log(paginas);
+                        let btnI = document.createElement("a");
+                        nav.appendChild(btnI);
+                        btnI.textContent = "<<";
+                        btnI.addEventListener("click", () => {
+                            offset = 0;
+                            mostrarDesarrolladoras(offset, limit);
+                        });
+                        for (let i = 0; i < paginas; i++) {
+                            let btn = document.createElement("a");
+                            nav.appendChild(btn);
+                            btn.textContent = i + 1;
+                            btn.addEventListener("click", () => {
+                                offset = LIMIT * i;
+                                let limit = LIMIT;
+
+                                mostrarDesarrolladoras(offset, limit);
+                            });
+                        }
+                        let btnF = document.createElement("a");
+                        nav.appendChild(btnF);
+                        btnF.textContent = ">>";
+                        btnF.addEventListener("click", () => {
+                            let limit = LIMIT;
+                            mostrarDesarrolladoras((Math.ceil(paginas) - 1) * LIMIT, limit);
+                        });
+                    }
                 }
             });
 }
