@@ -25,31 +25,24 @@ let carritoMail;
 let d = new Date();
 let mesd = d.getMonth();
 let yeard = d.getFullYear();
-
 paypalCheck.addEventListener("click", () => {
     paypalCont.style.display = "block";
     creditCont.style.display = "none";
     errorDiv.style.visibility = "hidden";
 });
-
 creditCheck.addEventListener("click", () => {
     paypalCont.style.display = "none";
     creditCont.style.display = "block";
     errorDiv.style.visibility = "hidden";
 });
-
 document.addEventListener("DOMContentLoaded", () => {
     traerUsuario();
     carritoUsuario();
 });
-
-
 comprar.addEventListener("click", () => {
     comprarCarrito();
     comprar.style.display = "none";
 });
-
-
 comprarCard.addEventListener("click", () => {
     if (
             validarCampoVacio(tarjeta, errorDiv, errorP, "El campo no puede estar vacío") &&
@@ -83,7 +76,6 @@ comprarCard.addEventListener("click", () => {
                                 user.value = usuarioNombre;
                                 msg.textContent = carritoMail;
                                 userMail.value = usuarioEmail;
-
                                 btn.click();
                             });
                         } else {
@@ -109,7 +101,6 @@ comprarCard.addEventListener("click", () => {
                 });
     }
 });
-
 function borrarProductoCarrito(nombre) {
     fetch("?svc=eleminar-producto-carrito&producto=" + nombre)
             .then(res => res.json())
@@ -126,35 +117,25 @@ function carritoUsuario() {
     fetch("?svc=carrito")
             .then(res => res.json())
             .then(json => {
+                carrito = json;
+                console.log(json);
                 if (json.value !== null) {
                     importe = 0;
-                    carrito = json;
-
                     //Formatear productos mail
                     carritoMail = "";
-
-                    console.log(usuarioEmail);
-            
                     if (carrito.length > 1) {
 
                         for (let i = 0; i < carrito.length; i++) {
                             if (i === 0) {
-                                carritoMail += `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento/100)).toFixed(2)} €`;
+                                carritoMail += `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento / 100)).toFixed(2)} €`;
                             } else if (i === (carrito.length - 1)) {
-                                carritoMail += `<br>- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento/100)).toFixed(2)} €`;
+                                carritoMail += `<br>- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento / 100)).toFixed(2)} €`;
                             } else {
-                                carritoMail += "<br>" + `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento/100)).toFixed(2)} €`;
+                                carritoMail += "<br>" + `- ${carrito[i].producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento / 100)).toFixed(2)} €`;
                             }
                         }
-
-                    } else {
-                        carritoMail = `- ${carrito.producto.nombre} | ${(carrito[i].producto.precio - (carrito[i].producto.precio * carrito[i].producto.descuento/100)).toFixed(2)} €`;
-                    }
-
-
-                    let cont = 0;
-                    main.innerHTML = "";
-                    try {
+                        let cont = 0;
+                        main.innerHTML = "";
                         json.forEach((prod) => {
                             let section = document.createElement("section");
                             let a = document.createElement("a");
@@ -166,9 +147,7 @@ function carritoUsuario() {
                             let price = document.createElement("p");
                             let del = document.createElement("del");
                             let x = document.createElement("h5");
-
                             cont++;
-
                             main.appendChild(section);
                             section.appendChild(a);
                             section.appendChild(x);
@@ -179,7 +158,6 @@ function carritoUsuario() {
                             a.appendChild(preDiv);
                             preDiv.appendChild(del);
                             preDiv.appendChild(price);
-
                             importe += parseFloat((prod.producto.precio - (prod.producto.precio * prod.producto.descuento / 100)).toFixed(2));
                             a.href = "?cmd=producto-consulta&id=" + prod.producto.id;
                             img.src = prod.producto.imagen;
@@ -188,13 +166,15 @@ function carritoUsuario() {
                             price.textContent = (prod.producto.precio - (prod.producto.precio * prod.producto.descuento / 100)).toFixed(2) + " €";
                             del.textContent = (prod.producto.precio).toFixed(2) + "€";
                             x.textContent = "X";
-
                             x.addEventListener("click", () => {
                                 borrarProductoCarrito(prod.producto.nombre);
                             });
                         });
                         paymentMethod();
-                    } catch (e) {
+                    } else {
+                        main.innerHTML = "";
+                        carritoMail = `- ${carrito[0].producto.nombre} | ${(carrito[0].producto.precio - (carrito[0].producto.precio * carrito[0].producto.descuento / 100)).toFixed(2)} €`;
+
                         let section = document.createElement("section");
                         let name = document.createElement("h3");
                         let price = document.createElement("p");
@@ -203,7 +183,6 @@ function carritoUsuario() {
                         let del = document.createElement("del");
                         let desc = document.createElement("span");
                         let x = document.createElement("h5");
-
                         main.appendChild(section);
                         section.appendChild(a);
                         section.appendChild(x);
@@ -212,30 +191,30 @@ function carritoUsuario() {
                         a.appendChild(price);
                         a.appendChild(del);
                         a.appendChild(desc);
-
-                        importe += parseFloat((json.producto.precio - (json.producto.precio * json.producto.descuento / 100)).toFixed(2));
-                        a.href = "?cmd=producto-consulta&id=" + json.producto.id;
-                        img.src = json.producto.imagen;
-                        name.textContent = json.producto.nombre;
-                        price.textContent = (json.producto.precio - (json.producto.precio * json.producto.descuento / 100)).toFixed(2) + " €";
-                        del.textContent = (json.producto.precio).toFixed(2);
-                        desc.textContent = json.producto.descuento + "%";
+                        importe += parseFloat((json[0].producto.precio - (json[0].producto.precio * json[0].producto.descuento / 100)).toFixed(2));
+                        a.href = "?cmd=producto-consulta&id=" + json[0].producto.id;
+                        img.src = json[0].producto.imagen;
+                        name.textContent = json[0].producto.nombre;
+                        price.textContent = (json[0].producto.precio - (json[0].producto.precio * json[0].producto.descuento / 100)).toFixed(2) + " €";
+                        del.textContent = (json[0].producto.precio).toFixed(2);
+                        desc.textContent = json[0].producto.descuento + "%";
                         x.textContent = "X";
-
                         x.addEventListener("click", () => {
-                            borrarProductoCarrito(json.producto.nombre);
+                            borrarProductoCarrito(json[0].producto.nombre);
                         });
                         paymentMethod();
                     }
+
                     importeCont.textContent = importe.toFixed(2) + " €";
                 } else {
+
                     main.innerHTML = "";
                     let h3 = document.createElement("h3");
                     main.appendChild(h3);
-
                     h3.textContent = "No hay productos almacenados en el carrito";
                     comprar.style.display = "none";
                 }
+
             });
 }
 

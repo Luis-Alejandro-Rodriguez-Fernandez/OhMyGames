@@ -35,7 +35,7 @@ public class ServiceCarrito extends Service {
                         if (cont == 0 && cs.size() > 1) {
                             json = "[" + c.toString();
                         } else if (cs.size() == 1) {
-                            json = c.toString();
+                            json = "["+c.toString()+"]";
                         } else if (cont == cs.size() - 1) {
                             json += "," + c.toString() + "]";
                         } else {
