@@ -8,13 +8,84 @@ and open the template in the editor.
     Author     : Luis Alejandro Rodríguez Fernández - luisalejandro.rodriguez.alum@iescamp.es
 */
 
+/*Error message*/
 #error{
     visibility: hidden;
     color : white;
     background-color: rgba(250,50,50,0.7);
     padding: 7px;
-    margin-bottom:10px;
+    margin-bottom:2em;
     width: 350px;
     text-align: center;
     height: 30px;
+}
+
+/*----------------------*/
+
+main{
+    flex-direction: column;
+}
+
+main > a {
+    font-size: 1.5em;
+    text-align: left;
+    
+    width: 100%;
+}
+
+main form {
+    height:200px;
+    width: 250px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--fondoblanco);
+    border: 1px solid var(--bordeblanco);
+    border-radius: 1em;
+
+    padding: 1em 0;
+}
+
+form h2 {
+    width: 100%;
+    padding-bottom: .5em;
+    border-bottom: 1px solid var(--bordeblanco);
+    text-align: center;
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+}
+
+main form label{
+    margin-top: 1.5em;
+    margin-bottom: .5em;
+    text-align: center;
+    color: white;
+}
+
+main form input{
+    text-align: center;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+#btn {
+    background-color: var(--azuloscuro03);
+    padding: 1em;
+    margin-top: 2em;
+
+    border: solid 1px var(--bordeblanco);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btn:hover{
+    background-color: var(--azuloscuro02);
+    transition: 1s;
 }

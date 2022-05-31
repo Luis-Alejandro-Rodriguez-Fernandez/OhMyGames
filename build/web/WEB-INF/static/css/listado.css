@@ -15,3 +15,102 @@ and open the template in the editor.
 #delDes{
     visibility: hidden;
 }
+
+/*-------------------------------------*/
+
+main {
+    flex-direction: column;
+}
+
+main > div:nth-child(2) {
+    width: 80%;
+    padding: 1em;
+    margin-bottom: 1em;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-bottom: 1px solid var(--bordeblanco);
+}
+
+main > div:nth-child(2) > a, 
+#main section > div a {
+    border: 1px solid var(--bordeblanco);
+    border-radius: .5em;
+    
+    padding: .5em;
+}
+
+main > div:nth-child(2) > a,
+#main section > div a:first-child {
+    background-color: var(--azuloscuro03);
+}
+
+main > div:nth-child(2) > a:hover {
+    background-color: var(--azuloscuro02);
+}
+
+/*----------------------------------*/
+
+#main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+
+#main section {
+    background-color: var(--fondoblanco);
+
+    padding: 5px 15px;
+    height: 10em;
+    width: 20em;
+
+    border: solid 1px var(--bordeblanco);
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#main section > div {
+    margin-top: 1em;
+    
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#main section > div a:last-child {
+    background-color: rgba(250,50,50,0.7);
+}
+
+/*---------------------------------------*/
+
+#nav{    
+    background-color: var(--azuloscuro03);
+    margin: 80px auto 20px;
+    padding: 5px;
+    border: 1px darkgrey solid;
+    border-radius:50px;
+    width:30vw; 
+    height: 60px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#nav a{
+    padding: 8px 12px;
+    border-radius:20px;
+    border: 1px solid var(--bordeblanco);
+}
+
+#nav a:hover{
+    background-color: var(--azuloscuro02);
+}

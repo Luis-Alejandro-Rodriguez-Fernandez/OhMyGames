@@ -38,14 +38,14 @@ main form{
     display: flex;
     flex-wrap:wrap;
     padding: 20px;
-    border: solid 1px white;
+    border: solid 1px var(--bordeblanco);
 }
 
 form h2 {
     width: 100%;
     padding-bottom: .5em;
     margin-bottom: 1em;
-    border-bottom:  solid white 1px;
+    border-bottom:  solid var(--bordeblanco) 1px;
     text-align: center;
 }
 
@@ -67,16 +67,23 @@ main form div:first-of-type{
     margin-bottom: 10px;
 }
 
-.field input{
-    width:218px;
+.field input, .field select, .field textarea {
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+}
+
+.field input {
+    width: 218px;
     margin-bottom: 5px;
+
 }
 .field label{
     width:218px;
     margin-bottom: 5px;
 }
 
-textarea{
+textarea {
     height:80px;
     width: 650px;
     resize: none;
@@ -94,16 +101,16 @@ textarea{
 }
 
 form a{
-    background-color:#104BB6;
+    background-color: var(--azuloscuro03);
     padding: 10px;
     border-radius: 5px;
-    border: solid 1px white;
+    border: solid 1px var(--bordeblanco);
     margin-top:5px;
     cursor: pointer;
 }
 
 #add:hover,#modBtn:hover{
-    background-color:#1010A0;
+    background-color:var(--azuloscuro02);
     transition: 1s;
 }
 
