@@ -80,6 +80,9 @@ function mostrarProductos(offset, limit, name) {
                                 let btn = document.createElement("a");
                                 pag.appendChild(btn);
                                 btn.textContent = i + 1;
+                                if ((offset / LIMIT) === i) {
+                                    btn.style.backgroundColor = "red";
+                                }
                                 btn.addEventListener("click", () => {
                                     offset = LIMIT * i;
                                     let limit = LIMIT;
@@ -100,47 +103,47 @@ function mostrarProductos(offset, limit, name) {
                         }
                     });
                 } else {
-                        //Creacion de elementos
-                        let card = document.createElement("div");
-                        let cardDiv1 = document.createElement("div");
-                        let cardDiv2 = document.createElement("div");
-                        let prcDiv = document.createElement("div");
-                        let delDiv = document.createElement("div");
-                        let name = document.createElement("h3");
-                        let price = document.createElement("p");
-                        let img = document.createElement("img");
-                        let desc = document.createElement("span");
-                        let a = document.createElement("a");
-                        let del = document.createElement("del");
-                        let em = document.createElement("p");
+                    //Creacion de elementos
+                    let card = document.createElement("div");
+                    let cardDiv1 = document.createElement("div");
+                    let cardDiv2 = document.createElement("div");
+                    let prcDiv = document.createElement("div");
+                    let delDiv = document.createElement("div");
+                    let name = document.createElement("h3");
+                    let price = document.createElement("p");
+                    let img = document.createElement("img");
+                    let desc = document.createElement("span");
+                    let a = document.createElement("a");
+                    let del = document.createElement("del");
+                    let em = document.createElement("p");
 
-                        //Enganche de elementos
-                        cards.appendChild(a);
+                    //Enganche de elementos
+                    cards.appendChild(a);
 
-                        a.appendChild(card);
-                        card.appendChild(cardDiv1);
-                        card.appendChild(cardDiv2);
-                        cardDiv1.appendChild(img);
-                        cardDiv1.appendChild(desc);
-                        cardDiv2.appendChild(name);
-                        cardDiv2.appendChild(prcDiv);
-                        prcDiv.appendChild(delDiv);
-                        delDiv.appendChild(del);
-                        delDiv.appendChild(em);
-                        prcDiv.appendChild(price);
+                    a.appendChild(card);
+                    card.appendChild(cardDiv1);
+                    card.appendChild(cardDiv2);
+                    cardDiv1.appendChild(img);
+                    cardDiv1.appendChild(desc);
+                    cardDiv2.appendChild(name);
+                    cardDiv2.appendChild(prcDiv);
+                    prcDiv.appendChild(delDiv);
+                    delDiv.appendChild(del);
+                    delDiv.appendChild(em);
+                    prcDiv.appendChild(price);
 
-                        //Personalizacion de elementos
-                        a.href = "?cmd=producto-consulta&id=" + json.id;
-                        card.setAttribute("class", "card");
-                        img.src = json.imagen;
-                        name.textContent = json.nombre;
-                        price.textContent = (json.precio - (json.precio * json.descuento / 100)).toFixed(2) + " €";
-                        del.textContent = json.precio + " ";
-                        em.textContent = " €";
-                        desc.textContent = json.descuento + "%";
+                    //Personalizacion de elementos
+                    a.href = "?cmd=producto-consulta&id=" + json.id;
+                    card.setAttribute("class", "card");
+                    img.src = json.imagen;
+                    name.textContent = json.nombre;
+                    price.textContent = (json.precio - (json.precio * json.descuento / 100)).toFixed(2) + " €";
+                    del.textContent = json.precio + " ";
+                    em.textContent = " €";
+                    desc.textContent = json.descuento + "%";
 
-                        delDiv.style.display = "flex";
-                        del.style.marginRight = "5px";
+                    delDiv.style.display = "flex";
+                    del.style.marginRight = "5px";
 
                 }
 

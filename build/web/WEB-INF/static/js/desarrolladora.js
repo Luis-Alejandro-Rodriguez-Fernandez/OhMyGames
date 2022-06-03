@@ -81,7 +81,7 @@ function mostrarDesarrolladoras(offset, limit) {
 
                         nav.innerHTML = "";
                         if (paginas > 1) {
-                        console.log(paginas);
+                            console.log(paginas);
                             let btnI = document.createElement("a");
                             nav.appendChild(btnI);
                             btnI.textContent = "<<";
@@ -93,6 +93,9 @@ function mostrarDesarrolladoras(offset, limit) {
                                 let btn = document.createElement("a");
                                 nav.appendChild(btn);
                                 btn.textContent = i + 1;
+                                if ((offset / LIMIT) === i) {
+                                    btn.style.backgroundColor = "red";
+                                }
                                 btn.addEventListener("click", () => {
                                     offset = LIMIT * i;
                                     let limit = LIMIT;
@@ -134,7 +137,7 @@ function mostrarDesarrolladoras(offset, limit) {
 
                     nav.innerHTML = "";
                     if (paginas > 1) {
-                    console.log(paginas);
+                        console.log(paginas);
                         let btnI = document.createElement("a");
                         nav.appendChild(btnI);
                         btnI.textContent = "<<";

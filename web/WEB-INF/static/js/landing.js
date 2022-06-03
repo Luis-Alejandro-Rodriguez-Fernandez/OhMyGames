@@ -19,7 +19,7 @@ let paginas = 0;
 
 //LIMITED INPUTS
 min.addEventListener("keypress", (event) => {
-    if(event.key === "e"){
+    if (event.key === "e") {
         event.preventDefault();
     }
 });
@@ -33,13 +33,13 @@ min.addEventListener("input", () => {
 });
 
 min.addEventListener("blur", () => {
-    if(min.value =="" || min.value == null){
-    min.value = 0;
+    if (min.value == "" || min.value == null) {
+        min.value = 0;
     }
 });
 
 max.addEventListener("keypress", (event) => {
-    if(event.key === "e"){
+    if (event.key === "e") {
         event.preventDefault();
     }
 });
@@ -53,8 +53,8 @@ max.addEventListener("input", () => {
 });
 
 max.addEventListener("blur", () => {
-    if(max.value =="" || max.value == null){
-    max.value = 100;
+    if (max.value == "" || max.value == null) {
+        max.value = 100;
     }
 });
 
@@ -134,7 +134,7 @@ function mostrarProductos(offset, limit, cat, des, tipo, min, max) {
                     if (admin && offset === 0) {
                         let card = document.createElement("div");
                         let a = document.createElement("a");
-                    let ico = document.createElement("h4");
+                        let ico = document.createElement("h4");
                         let p = document.createElement("p");
 
                         cards.appendChild(a);
@@ -214,6 +214,9 @@ function mostrarProductos(offset, limit, cat, des, tipo, min, max) {
                             let btn = document.createElement("a");
                             pag.appendChild(btn);
                             btn.textContent = i + 1;
+                            if ((offset / LIMIT) === i) {
+                                btn.style.backgroundColor = "red";
+                            }
                             btn.addEventListener("click", () => {
                                 offset = LIMIT * i;
                                 let limit = LIMIT;
