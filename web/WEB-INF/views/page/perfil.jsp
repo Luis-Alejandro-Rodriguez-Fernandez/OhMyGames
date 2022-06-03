@@ -17,25 +17,21 @@
         <jsp:include page="../../partials/header.jsp"/>
         <main>
             <div id="tab">
+                <section id="perfil">
+                    <div>
+                        <h2>Perfil</h2>
+                        <a id="modBtn" href="?cmd=usuario-modificar">Modificar Cuenta</a>
+                    </div>
+                    <div>
+                        <h2>@<%=u.getUser()%></h2>
+                        <h3><%=u.getEmail()%></h3>
+                    </div>
+                </section>
                 <nav>
-                    <a id="btn-perfil">General</a>
-                    <a id="btn-fav">Favoritos</a>
+                    <a id="btn-fav" class="select">Favoritos</a>
                     <a id="btn-bib">Mi biblioteca</a>
                 </nav>
                 <div>
-                    <section id="perfil">
-                        <div>
-                            <p>General</p>
-                            <a id="modBtn" href="?cmd=usuario-modificar">Modificar Cuenta</a>
-                        </div>
-                        <div>
-                            <img src="<%=u.getAvatar()%>" alt="<%=u.getUser()%>"/>
-                            <div>
-                                <h2>@<%=u.getUser()%></h2>
-                                <h3><%=u.getEmail()%></h3>
-                            </div>
-                        </div>
-                    </section>
                     <section id="favs"></section>  
                     <section id="bib"></section>  
                 </div>                
