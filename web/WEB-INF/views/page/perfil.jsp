@@ -23,8 +23,11 @@
                         <a id="modBtn" href="?cmd=usuario-modificar">Modificar Cuenta</a>
                     </div>
                     <div>
-                        <h2>@<%=u.getUser()%></h2>
-                        <h3><%=u.getEmail()%></h3>
+                        <img src="<%=u.getAvatar()%>" alt="<%=u.getUser()%>"/>
+                        <div>
+                            <h2>@<%=u.getUser()%></h2>
+                            <h3><%=u.getEmail()%></h3>
+                        </div>
                     </div>
                 </section>
                 <nav>

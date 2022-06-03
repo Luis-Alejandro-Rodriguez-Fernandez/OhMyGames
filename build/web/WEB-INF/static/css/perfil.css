@@ -25,7 +25,17 @@
 }
 
 #perfil > div:last-child {
-    flex-direction: column;
+    width: 50%;
+    
+    margin: 0 auto;
+}
+
+#perfil img {
+    margin: 1em 4em;
+    
+    width: 10em;
+    
+    border-radius: 50%;
 }
 
 /*--------------------*/
