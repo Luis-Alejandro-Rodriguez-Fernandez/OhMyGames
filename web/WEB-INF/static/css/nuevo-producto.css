@@ -1,4 +1,3 @@
-
 main{
     margin-top:70px;
 }
@@ -45,7 +44,7 @@ form h2 {
     width: 100%;
     padding-bottom: .5em;
     margin-bottom: 1em;
-    border-bottom:  solid var(--bordeblanco) 1px;
+    border-bottom:  1px solid var(--bordeblanco);
     text-align: center;
 }
 

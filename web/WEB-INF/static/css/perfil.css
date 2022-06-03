@@ -1,121 +1,100 @@
 #tab {
-    margin-top: 4rem;
-}
+    width: 90%;
 
-
-nav a {
-    background-color: rgba(0,0,0,.5);
-
-    border: 1px black solid;
-    border-radius: 10px 10px 0 0;
-
-    padding: .5em;
-    margin-top: 3rem;
-}
-
-nav > a:first-of-type{
-    margin-left: 3em;
-}
-
-#tab section{
-    background-color: rgba(255,255,255,.5);
+    background-color: var(--fondoblanco);
     border-radius: 1em;
-    margin-top: .5em;
 
-    /*Subir o bajar*/
-    height: 40em;
-    width: 50em;
-
-    padding: 2em;
-
+    padding: 1em;
 }
+
 /*--------------------*/
 
 #perfil > div {
-    display:flex;
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 1em;
 }
 
 #perfil > div:first-child {
     justify-content: space-between;
-    align-items: center;
 
-    border-bottom: 1px solid white;
-    margin-bottom: 3em;
+    padding: .5em;
+
+    border-bottom: 1px solid var(--bordeblanco);
+}
+
+#perfil > div:last-child {
+    width: 50%;
+    
+    margin: 0 auto;
 }
 
 #perfil img {
-    width: 7em;
-    margin: 0 2em;
-}
-
-#perfil p {
-    font-size: 2em;
-}
-
-#perfil > div > div > h2{
-    margin-bottom: 1em;
-}
-
-#perfil > div > div > h3{
-    font-size: 1em;
+    margin: 1em 4em;
+    
+    width: 10em;
+    
+    border-radius: 50%;
 }
 
 /*--------------------*/
 
-#favs{
-    display:none;
+nav {
+    border-top: 1px solid var(--azuloscuro02);
+    border-bottom: 1px solid var(--azuloscuro02);
+    border-radius: .5em;
 
-    grid-template-columns: repeat(3, 1fr);
+    padding: .5em;
+    margin-bottom: 1.5em;
+
+    background-color: var(--azulicon02);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+
+}
+
+nav > a {
+    color: var(--azuloscuro03);
+    text-transform: uppercase;
+    font-weight: bold;
+
+    margin: .5em 0;
+    padding-bottom: .2em;
+}
+
+.select {
+    border-bottom: 1px solid var(--azuloscuro03);
+}
+
+/*--------------------*/
+
+#favs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: .5em;
+    
+    padding: 1em;
+    margin: 0 auto;
 }
 
 #favs .card {
-    background-color: rgba(0,0,0,0.8);
-
-    position: relative;
-
-    padding: 15px;
-
     height: 16em;
     width: 13em;
-
-    border: solid 1px white;
-    border-radius: 5px;
+    
+    border: 1px solid var(--bordeblanco);
+    border-radius: .5em;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#favs .card span {
-    background-color: #104BB6;
-    border-radius: 8px 8px 0;
-    text-align: center;
-
-    position: absolute;
-    top: .5em;
-    left: .5em;
-
-    padding: 10px;
-    font-size: 15px;
-}
-
-#favs .card h4 {
-    color: red;
-    border-radius: 8px 8px 0;
-    text-align: center;
-
-    position: absolute;
-    top: .5em;
-    right: .5em;
-
-    font-size: 15px;
-
-    cursor: pointer;
-}
-
 #favs .card:hover{
-    background-color: rgba(0,0,0,1);
+    background-color: var(--azuloscuro01);
     transition:1.5s;
 }
 
@@ -124,52 +103,62 @@ nav > a:first-of-type{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+    position: relative;
+}
 
-    width: 90%;
-    height: 90%;
+#favs .card h4 {
+    text-align: center;
+
+    position: absolute;
+    
+    color: red;
+    padding: .3em;
+    
+    border-radius: .2em;
+    
+    top: .5em;
+    right: .5em;
+    
+    background-color: var(--bordeblanco);
+
+    cursor: pointer;
+
+    font-size: 1em;
 }
 
 #favs .card a > img {
-    height: 100px;
-    width: 80px;
-
-    border-radius: 1em;
-}
-
-#favs .card a > h3 {
-    margin: .5em 0;
-    text-align: center;
-}
-
-#favs .card a > p {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #104BB6;
+    object-fit: cover;
+    
+    height: 16em;
+    width: 13em;
+    
+    border-radius: .5em;
 }
 
 /*--------------------*/
 
 #bib{
-    display:none;
-    overflow:scroll;
+    display: none;
+    
+    grid-template-columns: repeat(2, 1fr);
 }
 
 #bib .card {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--bordeblanco);
 }
 
 #bib .card > a {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
-    padding: 1em;
+    padding: 1em 4em;
 }
 
 #bib .card > a > img {
-    width: 4em;
+    width: 5em;
+    
+    border-radius: .5em;
+    
+    margin-right: 5em;
 }
-
-/*#imgUp{
-    visibility:hidden;
-}*/
