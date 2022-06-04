@@ -26,24 +26,29 @@ main{
     flex-direction: column;
 }
 
-main > a {
+main nav {
     font-size: 1.5em;
     text-align: left;
-    
+
     width: 100%;
 }
 
 main form {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    
+    width: 60%;
+    height: 35em;
 
     background-color: var(--fondoblanco);
     border: 1px solid var(--bordeblanco);
     border-radius: 1em;
 
-    padding: 1em 0;
+    padding: 20px;
+}
+
+form > div {
+    width: 50%;
 }
 
 form h2 {
@@ -56,6 +61,16 @@ form h2 {
 .field{
     display: flex;
     flex-direction: column;
+    width: 40%;
+    margin-bottom: 10px;
+}
+
+.field input, .field select, .field textarea {
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+
+    width: 20em;
 }
 
 main form label{
@@ -63,26 +78,46 @@ main form label{
     margin-bottom: .5em;
     text-align: center;
     color: white;
+    
+    width: 200px;
 }
 
 main form input{
     text-align: center;
     padding: 5px;
+
+    width: 100%;
+
     border: none;
     border-radius: 5px;
 }
 
-#btn {
-    background-color: var(--azuloscuro03);
-    padding: 1em;
-    margin-top: 2em;
-
-    border: solid 1px var(--bordeblanco);
-    border-radius: 5px;
-    cursor: pointer;
+#imgUp{
+    visibility: hidden;
+    height: 20px;
+    overflow: hidden;
 }
 
-#btn:hover{
-    background-color: var(--azuloscuro02);
-    transition: 1s;
+main form #imgLoad {
+    object-fit: contain;
+    
+    height:300px; 
+    width:200px;
+    
+    margin-bottom: 10px; 
+}
+
+#form > div:nth-child(4) {
+    margin-top: 1em;
+}
+
+form a{
+    background-color: var(--azuloscuro03);
+    border: solid 1px var(--bordeblanco);
+
+    padding: 10px;
+    border-radius: 5px;
+    margin-top:20em;
+
+    cursor: pointer;
 }

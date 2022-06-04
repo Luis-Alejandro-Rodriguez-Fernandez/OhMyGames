@@ -22,23 +22,25 @@
             <div id="error"><p></p></div>
             <form id="form" method="POST" action="?cmd=usuario-actualizar">
                 <h2>Modificar perfil</h2>
-                <div class="field">
-                    <label for="user">Usuario</label>
-                    <input type="text" id="Usuario" value="<%=u.getUser()%>" name="user">
-                </div>
-                <div class="field">
-                    <label for="email">Correo electrónico</label>
-                    <input type="text" id="Email" value="<%=u.getEmail()%>" name="email">
-                </div>
-                <div class="field">
-                    <label for="passO">Contraseña</label>
-                    <input type="password" id="Contraseña" value="" name="pass">
-                </div>
-                <div class="field">
-                    <label for="passN">Repetir contraseña</label>
-                    <input type="password" id="Contraseña2" name="pass2">
-                </div>
                 <div>
+                    <div class="field">
+                        <label for="user">Usuario</label>
+                        <input type="text" id="Usuario" value="<%=u.getUser()%>" name="user">
+                    </div>
+                    <div class="field">
+                        <label for="email">Correo electrónico</label>
+                        <input type="text" id="Email" value="<%=u.getEmail()%>" name="email">
+                    </div>
+                    <div class="field">
+                        <label for="passO">Contraseña</label>
+                        <input type="password" id="Contraseña" value="" name="pass">
+                    </div>
+                    <div class="field">
+                        <label for="passN">Repetir contraseña</label>
+                        <input type="password" id="Contraseña2" name="pass2">
+                    </div>
+                </div>
+                <div id="img">
                     <div class="field">
                         <label for="imga">Imagen</label> 
                         <input type="file" id="imga" name="imga">
@@ -46,8 +48,11 @@
                     </div>
                     <img id="imgLoad" src="" alt="Aquí estará tu imagen."/>
                 </div>
-                <a id="modU">Guardar</a>
-                <a id="reset">Reiniciar</a>
+                <div>
+                    <a id="modU">Guardar</a>
+                    <a id="reset">Reiniciar</a>
+                </div>
+
             </form>
         </main>        
         <jsp:include page="../../partials/footer.jsp"/>
