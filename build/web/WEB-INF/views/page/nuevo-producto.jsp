@@ -68,7 +68,7 @@
                     </div>            
                     <div class="field">
                         <label for="date">Lanzamiento</label>    
-                        <input type="date" id="date" name="date">
+                        <input type="date" id="fecha" name="date">
                     </div>             
                     <div class="field">
                         <label for="descripcion">Descripción</label>

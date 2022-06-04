@@ -7,7 +7,7 @@ let des = document.getElementById("desarrolladora");
 let desc = document.getElementById("descripcion");
 let precio = document.getElementById("precio");
 let descuento = document.getElementById("descuento");
-let date = document.getElementById("date");
+let date = document.getElementById("fecha");
 let errorDiv = document.querySelector("#error");
 let errorP = document.querySelector("#error p");
 let img = document.getElementById("imga");
@@ -27,9 +27,9 @@ add.addEventListener("click", () => {
             validarCampoVacio(precio, errorDiv, errorP, null) &&
             validarCampoVacio(descuento, errorDiv, errorP, null) &&
             validarDescuto(descuento, errorDiv, errorP, null) &&
-            validarCampoVacio(desc, errorDiv, errorP, null) &&
             validarCampoVacio(date, errorDiv, errorP, null) &&
-            validarFecha(date) &&
+            validarFecha(date,errorDiv,errorP) &&
+            validarCampoVacio(desc, errorDiv, errorP, null) &&
             validarImgUp(img.files, errorDiv, errorP)) {
         errorDiv.style.visibility = "hidden";
         imgaUp.value = imgBase64;
@@ -98,6 +98,7 @@ function getBase64Image() {
 
 function validarCampoVacio(campo, errorDiv, errorP, msj) {
     if (campo.value === "" || campo.value === null) {
+    console.log(campo.value === "")
         errorDiv.style.visibility = "visible";
         if (msj === null) {
             errorP.textContent = `El campo ${campo.id} es obligatorio`;

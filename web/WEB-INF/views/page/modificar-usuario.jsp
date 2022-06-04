@@ -46,7 +46,7 @@
                         <input type="file" id="imga" name="imga">
                         <input id="imgUp" name="imgUp" value="">
                     </div>
-                    <img id="imgLoad" src="" alt="Aquí estará tu imagen."/>
+                    <img id="imgLoad" src="<%=u.getAvatar()%>" alt="Aquí estará tu imagen."/>
                 </div>
                 <div>
                     <a id="modU">Guardar</a>
