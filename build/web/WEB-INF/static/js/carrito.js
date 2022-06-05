@@ -170,7 +170,8 @@ function carritoUsuario() {
                                 borrarProductoCarrito(prod.producto.nombre);
                             });
                         });
-                        paymentMethod();
+
+
                     } else {
                         main.innerHTML = "";
                         carritoMail = `- ${carrito[0].producto.nombre} | ${(carrito[0].producto.precio - (carrito[0].producto.precio * carrito[0].producto.descuento / 100)).toFixed(2)} €`;
@@ -202,10 +203,10 @@ function carritoUsuario() {
                         x.addEventListener("click", () => {
                             borrarProductoCarrito(json[0].producto.nombre);
                         });
-                        paymentMethod();
-                    }
 
-                    importeCont.textContent = importe.toFixed(2) + " €";
+                    }
+                        paymentMethod();
+                        importeCont.textContent = importe.toFixed(2) + " €";
                 } else {
 
                     main.innerHTML = "";

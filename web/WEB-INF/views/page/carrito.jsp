@@ -143,6 +143,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
             function paymentMethod() {
                 //Paypal
                 let pp = document.getElementById("paypal-button-container");
+                pp.innerHTML="";
                 if (pp !== null) {
                     let  impPayment = (importe).toFixed(2) + "";
                     paypal.Buttons({
