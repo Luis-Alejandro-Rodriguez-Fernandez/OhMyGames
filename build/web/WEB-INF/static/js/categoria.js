@@ -93,6 +93,7 @@ function mostrarCategorias(offset, limit) {
                                 let btn = document.createElement("a");
                                 nav.appendChild(btn);
                                 btn.textContent = i + 1;
+
                                 if ((offset / LIMIT) === i) {
                                     btn.style.backgroundColor = "#00B4D8";
                                 }
@@ -147,7 +148,11 @@ function mostrarCategorias(offset, limit) {
                             let btn = document.createElement("a");
                             nav.appendChild(btn);
                             btn.textContent = i + 1;
+                            if ((offset / LIMIT) === i) {
+                                btn.style.backgroundColor = "#00B4D8";
+                            }
                             btn.addEventListener("click", () => {
+
                                 offset = LIMIT * i;
                                 let limit = LIMIT;
 
