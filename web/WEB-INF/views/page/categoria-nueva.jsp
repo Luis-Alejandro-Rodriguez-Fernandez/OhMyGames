@@ -19,7 +19,7 @@
 
         <main>
         <div id="error"><p></p></div>
-            <a href="?cmd=categoria">🠔 Volver</a>
+            <a href="?cmd=categoria" class="volver">🠔 Volver</a>
             <form id="form">
                 <div class="field">
                     <label for="nombre">Nombre</label>

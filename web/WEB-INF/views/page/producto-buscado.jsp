@@ -26,7 +26,7 @@ if(name.isEmpty()){
     <body>
         <jsp:include page="../../partials/header.jsp"/>
         <main>
-            <a href="?cmd=landing">🠔 Volver</a>
+            <a href="?cmd=landing" class="volver">🠔 Volver</a>
             <p>Has buscado: "<span id="name"><%=name%></span>"</p>
             <div id="cards">
             </div>

@@ -22,7 +22,7 @@
     <body>
         <jsp:include page="../../partials/header.jsp"/>
         <main>
-            <a href="?cmd=landing">Volver</a>
+            <a href="?cmd=landing" class="volver">🠔 Volver</a>
             <section>
                 <p id="prod-id"><%=p.getId()%></p>
                 <div>

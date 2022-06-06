@@ -112,13 +112,6 @@ main {
 
 /*---------------------------------*/
 
-main > a:nth-child(1) {
-    font-size: 1.5em;
-    text-align: left;
-    
-    width: 100%;
-}
-
 main > p {
     margin-bottom: 1em;
     

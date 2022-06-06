@@ -16,9 +16,7 @@
     <body>
         <jsp:include page="../../partials/header.jsp"/>
         <main>
-            <nav>
-                <a href="?cmd=usuario-perfil">Volver</a>
-            </nav>
+            <a href="?cmd=usuario-perfil" class="volver">🠔 Volver</a>
             <div id="error"><p></p></div>
             <form id="form" method="POST" action="?cmd=usuario-actualizar">
                 <h2>Modificar perfil</h2>

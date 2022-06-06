@@ -26,13 +26,6 @@ main{
     flex-direction: column;
 }
 
-main nav {
-    font-size: 1.5em;
-    text-align: left;
-
-    width: 100%;
-}
-
 main form {
     display: flex;
     flex-wrap: wrap;

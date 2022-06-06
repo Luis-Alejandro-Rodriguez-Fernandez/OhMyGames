@@ -49,6 +49,8 @@ main{
     align-items: center;
     padding:20px;
     color: white;
+
+    position: relative;
 }
 
 img {
@@ -65,4 +67,17 @@ a {
 
 ul {
     list-style: none;
+}
+
+.volver {
+    position: absolute;
+
+    top: 1em;
+    left: 1em;
+
+    background-color: var(--fondoblanco);
+    border: 1px solid var(--azuloscuro02);
+    border-radius: .5em;
+    
+    padding: .5em;
 }
