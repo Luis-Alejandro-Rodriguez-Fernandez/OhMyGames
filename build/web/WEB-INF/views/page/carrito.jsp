@@ -3,6 +3,7 @@
     Created on : 25 abr. 2022, 13:18:05
     Author     : Luis Alejandro Rodríguez Fernández - luisalejandro.rodriguez.alum@iescamp.es
 --%>
+<%@page import="org.japo.java.entities.Usuario"%>
 <%@page import="org.japo.java.entities.Carrito"%>
 <%@page import="java.util.List"%>
 
@@ -21,7 +22,8 @@
     </head>
     <body>
         <jsp:include page="../../partials/header.jsp"/>
-        <main>
+        <main>       
+
             <div id="main"></div>
 
             <%if (cs != null || cs.size() != 0) {%>

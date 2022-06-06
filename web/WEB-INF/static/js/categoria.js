@@ -54,6 +54,7 @@ function contarCategorias() {
 }
 
 function mostrarCategorias(offset, limit) {
+    main.innerHTML = "<img id='loading' src='public/img/loading.gif'>";
     fetch("?svc=categoria-paginas&offset=" + offset + "&limit=" + limit)
             .then(res => res.json())
             .then(json => {
@@ -87,6 +88,7 @@ function mostrarCategorias(offset, limit) {
                             btnI.textContent = "<<";
                             btnI.addEventListener("click", () => {
                                 offset = 0;
+                                let limit = LIMIT;
                                 mostrarCategorias(offset, limit);
                             });
                             for (let i = 0; i < paginas; i++) {
@@ -142,6 +144,7 @@ function mostrarCategorias(offset, limit) {
                         btnI.textContent = "<<";
                         btnI.addEventListener("click", () => {
                             offset = 0;
+                            let limit = LIMIT;
                             mostrarCategorias(offset, limit);
                         });
                         for (let i = 0; i < paginas; i++) {

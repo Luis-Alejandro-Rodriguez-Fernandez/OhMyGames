@@ -11,6 +11,8 @@ let paypalCont = document.getElementById("paypal-container");
 let creditCont = document.getElementById("credit-card");
 let errorDiv = document.querySelector("#error");
 let errorP = document.querySelector("#error p");
+let mainCont = document.querySelector("main");
+let aside = document.getElementById("aside");
 let comprarCard = document.getElementById("comprarCard");
 let tarjeta = document.getElementById("tarjeta");
 let mes = document.getElementById("mes");
@@ -114,12 +116,15 @@ function borrarProductoCarrito(nombre) {
 }
 
 function carritoUsuario() {
+    main.innerHTML = "<img id='loading' src='public/img/loading.gif'>";
     fetch("?svc=carrito")
             .then(res => res.json())
             .then(json => {
                 carrito = json;
-                console.log(json);
+
                 if (json.value !== null) {
+                    aside.style.visibility="visible";
+//                    mainCont.style.visibility="visible";
                     importe = 0;
                     //Formatear productos mail
                     carritoMail = "";
@@ -208,7 +213,7 @@ function carritoUsuario() {
                         paymentMethod();
                         importeCont.textContent = importe.toFixed(2) + " €";
                 } else {
-
+                    aside.style.visibility="hidden";
                     main.innerHTML = "";
                     let h3 = document.createElement("h3");
                     main.appendChild(h3);

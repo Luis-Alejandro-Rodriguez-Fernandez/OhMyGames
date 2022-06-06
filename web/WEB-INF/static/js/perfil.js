@@ -5,6 +5,12 @@ let favSection = document.getElementById("favs");
 let bibSection = document.getElementById("bib");
 let perfilSection = document.getElementById("perfil");
 
+const LIMITBIB = 6;
+let offsetBib = 0;
+let paginasBib = 0;
+const LIMITFAV = 10;
+let offsetFav = 0;
+let paginasFav = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
     traerFavoritos();
@@ -14,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 btnFav.addEventListener("click", () => {
     bibSection.style.display = "none";
     favSection.style.display = "grid";
-    
+
     btnFav.className = "select";
     btnBib.className = "";
 });
@@ -22,7 +28,7 @@ btnFav.addEventListener("click", () => {
 btnBib.addEventListener("click", () => {
     bibSection.style.display = "grid";
     favSection.style.display = "none";
-    
+
     btnBib.className = "select";
     btnFav.className = "";
 });
@@ -40,9 +46,22 @@ function quitarFavorito(prod) {
     }
 }
 
+function contarFavoritos() {
+    fetch("?svc=contar-favoritos")
+            .then(res => res.json())
+            .then(json => {
+                if (json.value !== null) {
+                    paginas = json.paginas / LIMITFAV;
+                }
+                let limit = LIMITFAV;
 
-function traerFavoritos() {
-    fetch("?svc=traer-favoritos")
+                favSection.innerHTML = "";
+                mostrarCategorias(offset, limit);
+            });
+}
+
+function traerFavoritos(offsetFav,limitFav) {
+    fetch("?svc=traer-favoritos&offset="+offsetFav+"&limit="+limitFav)
             .then(res => res.json())
             .then(json => {
                 if (json.value !== null) {
@@ -70,7 +89,44 @@ function traerFavoritos() {
                                 quitarFavorito(fav.id);
                             });
                         });
+                        //paginacion
+                        nav = document.createElement("nav");
+                        favSection.appendChild(nav)
+                        if (paginasFav > 1) {
+                            let btnI = document.createElement("a");
+                            nav.appendChild(btnI);
+                            btnI.textContent = "<<";
+                            btnI.addEventListener("click", () => {
+                                let limitFav = LIMITFAV;
+                                offsetFav = 0;
+                                traerFavoritos(offset, limitFav);
+                            });
+                            for (let i = 0; i < paginasFav; i++) {
+                                let btn = document.createElement("a");
+                                nav.appendChild(btn);
+                                btn.textContent = i + 1;
 
+                                if ((offset / LIMITFAV) === i) {
+                                    btn.style.backgroundColor = "#00B4D8";
+                                }
+                                btn.addEventListener("click", () => {
+                                    offsetFav = LIMITFAV * i;
+                                    let limitFav = LIMITFAV;
+
+                                    traerFavoritos(offset, limitFav);
+                                });
+                            }
+                            let btnF = document.createElement("a");
+                            nav.appendChild(btnF);
+                            btnF.textContent = ">>";
+                            btnF.addEventListener("click", () => {
+                                let offsetFav = LIMITFAV;
+
+                                traerFavoritos((Math.ceil(paginasFav) - 1) * LIMITFAV, offsetFav);
+                            });
+                        } else {
+                            nav.style.display = "none";
+                        }
                     } catch (e) {
                         favSection.innerHTML = "";
 
@@ -104,6 +160,7 @@ function traerFavoritos() {
                         X.addEventListener("click", () => {
                             quitarFavorito(json.id);
                         });
+
                     }
                 } else {
                     favSection.textContent = "No hay resultados";
@@ -111,8 +168,22 @@ function traerFavoritos() {
             });
 }
 
-function traerBiblioteca() {
-    fetch("?svc=traer-biblioteca")
+function contarBiblioteca() {
+    fetch("?svc=contar-biblioteca")
+            .then(res => res.json())
+            .then(json => {
+                if (json.value !== null) {
+                    paginas = json.paginas / LIMITBIB;
+                }
+                let limit = LIMITBIB;
+
+                bibSection.innerHTML = "";
+                mostrarCategorias(offset, limit);
+            });
+}
+
+function traerBiblioteca(offsetBib,limitBib) {
+    fetch("?svc=traer-biblioteca&offset="+offsetBib+"&limit="+limitBib)
             .then(res => res.json())
             .then(json => {
                 if (json.value !== null) {
@@ -139,8 +210,46 @@ function traerBiblioteca() {
                             img.src = bib.imagen;
                             h3.textContent = bib.nombre;
 
-                        });
 
+                        });
+                        //paginacion
+                        nav = document.createElement("nav");
+                        bibSection.appendChild(nav)
+                        if (paginasBib > 1) {
+                            let btnI = document.createElement("a");
+                            nav.appendChild(btnI);
+                            btnI.textContent = "<<";
+                            btnI.addEventListener("click", () => {
+                                let limitBib = LIMITBIB;
+                                offset = 0;
+                                traerBiblioteca(offset, limitBib);
+                            });
+                            for (let i = 0; i < paginasBib; i++) {
+                                let btn = document.createElement("a");
+                                nav.appendChild(btn);
+                                btn.textContent = i + 1;
+
+                                if ((offset / LIMITBIB) === i) {
+                                    btn.style.backgroundColor = "#00B4D8";
+                                }
+                                btn.addEventListener("click", () => {
+                                    offset = LIMITBIB * i;
+                                    let limitBib = LIMITBIB;
+
+                                    traerBiblioteca(offset, limitBib);
+                                });
+                            }
+                            let btnF = document.createElement("a");
+                            nav.appendChild(btnF);
+                            btnF.textContent = ">>";
+                            btnF.addEventListener("click", () => {
+                                let limit = LIMITBIB;
+
+                                traerBiblioteca((Math.ceil(paginasBib) - 1) * LIMITBIB, limit);
+                            });
+                        } else {
+                            nav.style.display = "none";
+                        }
                     } catch (e) {
                         bibSection.innerHTML = "";
 

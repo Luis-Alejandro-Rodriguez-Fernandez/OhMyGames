@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //TODO CHAGE ONLY NAME
 function mostrarProductos(offset, limit, name) {
+    cards.innerHTML = "<img id='loading' src='public/img/loading.gif'>";
     fetch("?svc=productos-paginados-nombre&offset=" + offset + "&limit=" + limit
             + "&name=" + name.textContent)
             .then(res => res.json())

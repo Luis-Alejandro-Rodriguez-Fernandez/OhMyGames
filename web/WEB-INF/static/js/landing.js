@@ -121,7 +121,9 @@ btnPre.addEventListener("click", () => {
 
 
 
-function mostrarProductos(offset, limit, cat, des, tipo, min, max) {
+function mostrarProductos(offset, limit, cat, des, tipo, min, max) {        
+    cards.innerHTML = "<img id='loading' src='public/img/loading.gif'>";
+
     fetch("?svc=productos-paginados&offset=" + offset + "&limit=" + limit
             + "&cat=" + cat.value + "&des=" + des.value + "&tipo=" + tipo.value
             + "&min=" + min.value + "&max=" + max.value)
@@ -262,27 +264,3 @@ function contarProductos() {
             });
 }
 
-
-//let test = document.getElementById("test");
-//
-//test.addEventListener("click",()=>{
-//
-
-//   
-////   formMail.appendChild(user);
-////   formMail.appendChild(msg);
-////   formMail.appendChild(userMail);
-//   
-////   user.setAttribute("id","user_name");
-////   msg.setAttribute("id","message");
-////   userMail.setAttribute("id","user_email");
-//   
-////   formMail.style.position="absolute";
-////   formMail.style.zIndex="-15";
-////   formMail.style.visibility="hidden";
-//   
-
-//   
-//   enviarEmail();
-//   
-//});

@@ -53,6 +53,7 @@ function contarDesarrolladoras() {
 }
 
 function mostrarDesarrolladoras(offset, limit) {
+    main.innerHTML = "<img id='loading' src='public/img/loading.gif'>";
     fetch("?svc=desarrolladora-paginas&offset=" + offset + "&limit=" + limit)
             .then(res => res.json())
             .then(json => {

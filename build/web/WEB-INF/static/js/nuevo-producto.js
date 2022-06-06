@@ -38,10 +38,10 @@ add.addEventListener("click", () => {
 
 });
 
-
+let regex = /^[0-9.,]/;
 //LIMITED INPUTS
 descuento.addEventListener("keypress", (event) => {
-    if(event.key === "e"){
+    if(!regex.test(event.key)){
         event.preventDefault();
     }
 });
@@ -62,7 +62,7 @@ descuento.addEventListener("blur", () => {
 });
 
 precio.addEventListener("keypress", (event) => {
-    if(event.key === "e"){
+    if(!regex.test(event.key)){
         event.preventDefault();
     }
 });

@@ -28,8 +28,8 @@
                 <div>
                     <h2><%=p.getNombre()%></h2>
                     <%if (u != null && u.getGrupo() == 2) {%>
-                            <a href="?cmd=producto-modificar&id=<%=p.getId()%>">Modificar producto</a>
-                            <%}%>
+                    <a href="?cmd=producto-modificar&id=<%=p.getId()%>">Modificar producto</a>
+                    <%}%>
                 </div>
                 <div>
                     <div>
@@ -38,11 +38,12 @@
                         <div>
                             <%if (u == null || u.getGrupo() == 1) {%>
                             <img id="car" src="public/img/carrito.png"/>
-                            <%}%>
+
                             <%if (favorito != null) {%>
                             <img id="fav" src="public/img/fav.png" alt="Favorito"/>
                             <%} else {%>
                             <img id="fav" src="public/img/nofav.png" alt="No Favorito"/>
+                            <%}%>
                             <%}%>
                         </div>
                     </div>

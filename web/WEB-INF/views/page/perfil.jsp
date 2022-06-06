@@ -30,6 +30,7 @@
                         </div>
                     </div>
                 </section>
+                <%if (u == null || u.getGrupo() == 1) {%>
                 <nav>
                     <a id="btn-fav" class="select">Favoritos</a>
                     <a id="btn-bib">Mi biblioteca</a>
@@ -37,7 +38,8 @@
                 <div>
                     <section id="favs"></section>  
                     <section id="bib"></section>  
-                </div>                
+                </div>   
+                <%}%>
             </div>
         </main>        
         <jsp:include page="../../partials/footer.jsp"/>

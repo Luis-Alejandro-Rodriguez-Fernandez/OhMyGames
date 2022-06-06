@@ -81,3 +81,10 @@ ul {
     
     padding: .5em;
 }
+
+#loading{
+    position: absolute;
+    top:30vh;
+    left:35vw;
+    width: 30vw;
+}

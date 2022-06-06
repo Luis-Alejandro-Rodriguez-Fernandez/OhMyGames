@@ -203,4 +203,6 @@ div.fieldset > label {
 #aside{
     position: fixed;
     right:1em;
+    visibility: hidden;
 }
+
