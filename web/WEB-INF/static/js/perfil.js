@@ -40,7 +40,7 @@ function quitarFavorito(prod) {
         fetch(`?svc=quitar-favorito&prod=${prod}`)
                 .then(res => res.json())
                 .then(json => {
-                    traerFavoritos();
+                    traerFavoritos(offsetFav, LIMITFAV);
                     btnFav.click();
                 });
     }
@@ -78,7 +78,7 @@ function traerFavoritos(offsetFav, limitFav) {
                             favSection.appendChild(card);
                             card.appendChild(a);
                             a.appendChild(img);
-                            a.appendChild(X);
+                            card.appendChild(X);
 
                             //Personalizacion de elementos
                             a.href = "?cmd=producto-consulta&id=" + fav.id;
@@ -91,7 +91,6 @@ function traerFavoritos(offsetFav, limitFav) {
                         });
                         //paginacion
                         nav = document.createElement("nav");
-                        console.log(paginasFav);
                         favSection.appendChild(nav);
                         if (paginasFav > 1) {
                             let btnI = document.createElement("a");
@@ -131,36 +130,24 @@ function traerFavoritos(offsetFav, limitFav) {
                     } catch (e) {
                         favSection.innerHTML = "";
 
-                        let a = document.createElement("a");
-                        let card = document.createElement("div");
-                        let img = document.createElement("img");
-                        let h3 = document.createElement("h3");
-                        let del = document.createElement("del");
-                        let price = document.createElement("p");
-                        let desc = document.createElement("span");
-                        let X = document.createElement("h4");
+                            let a = document.createElement("a");
+                            let card = document.createElement("div");
+                            let img = document.createElement("img");
+                            let X = document.createElement("h4");
 
-                        favSection.appendChild(card);
-                        card.appendChild(a);
-                        a.appendChild(img);
-                        a.appendChild(h3);
-                        a.appendChild(del);
-                        a.appendChild(price);
-                        a.appendChild(desc);
-                        card.appendChild(X);
+                            favSection.appendChild(card);
+                            card.appendChild(a);
+                            a.appendChild(img);
+                            card.appendChild(X);
 
-                        //Personalizacion de elementos
-                        a.href = "?cmd=producto-consulta&id=" + json.id;
-                        card.setAttribute("class", "card");
-                        img.src = json.imagen;
-                        name.textContent = json.nombre;
-                        price.textContent = (json.precio - (json.precio * json.descuento / 100)).toFixed(2) + " €";
-                        del.textContent = json.precio;
-                        desc.textContent = json.descuento + "%";
-                        X.textContent = "X";
-                        X.addEventListener("click", () => {
-                            quitarFavorito(json.id);
-                        });
+                            //Personalizacion de elementos
+                            a.href = "?cmd=producto-consulta&id=" + json.id;
+                            card.setAttribute("class", "card");
+                            img.src = json.imagen;
+                            X.textContent = "X";
+                            X.addEventListener("click", () => {
+                                quitarFavorito(json.id);
+                            });
 
                     }
                 } else {
@@ -187,13 +174,74 @@ function traerBiblioteca(offsetBib, limitBib) {
     fetch("?svc=traer-biblioteca&offset=" + offsetBib + "&limit=" + limitBib)
             .then(res => res.json())
             .then(json => {
-                console.log(json)
                 if (json.value !== null) {
                     bibSection.innerHTML = "";
                     try {
-                        if(json.length > 1){
-                        bibSection.innerHTML = "";
-                        json.forEach((bib) => {
+                        if (json.length > 1) {
+                            bibSection.innerHTML = "";
+                            json.forEach((bib) => {
+
+                                let a = document.createElement("a");
+                                let card = document.createElement("div");
+                                let img = document.createElement("img");
+                                let h3 = document.createElement("h3");
+
+
+                                bibSection.appendChild(card);
+                                card.appendChild(a);
+                                a.appendChild(img);
+                                a.appendChild(h3);
+
+
+                                //Personalizacion de elementos
+
+                                a.href = "?cmd=producto-consulta&id=" + bib.id;
+                                card.setAttribute("class", "card");
+                                img.src = bib.imagen;
+                                h3.textContent = bib.nombre;
+
+
+                            });
+                            //paginacion
+                            nav = document.createElement("nav");
+                            bibSection.appendChild(nav);
+                            if (paginasBib > 1) {
+                                let btnI = document.createElement("a");
+                                nav.appendChild(btnI);
+                                btnI.textContent = "<<";
+                                btnI.addEventListener("click", () => {
+                                    let limitBib = LIMITBIB;
+                                    offsetBib = 0;
+                                    traerBiblioteca(offsetBib, limitBib);
+                                });
+                                for (let i = 0; i < paginasBib; i++) {
+                                    let btn = document.createElement("a");
+                                    nav.appendChild(btn);
+                                    btn.textContent = i + 1;
+
+                                    if ((offsetBib / LIMITBIB) === i) {
+                                        btn.style.backgroundColor = "#00B4D8";
+                                    }
+                                    btn.addEventListener("click", () => {
+                                        offsetBib = LIMITBIB * i;
+                                        let limitBib = LIMITBIB;
+
+                                        traerBiblioteca(offsetBib, limitBib);
+                                    });
+                                }
+                                let btnF = document.createElement("a");
+                                nav.appendChild(btnF);
+                                btnF.textContent = ">>";
+                                btnF.addEventListener("click", () => {
+                                    let limit = LIMITBIB;
+
+                                    traerBiblioteca((Math.ceil(paginasBib) - 1) * LIMITBIB, limit);
+                                });
+                            } else {
+                                nav.style.display = "none";
+                            }
+                        } else {
+                            bibSection.innerHTML = "";
 
                             let a = document.createElement("a");
                             let card = document.createElement("div");
@@ -208,79 +256,14 @@ function traerBiblioteca(offsetBib, limitBib) {
 
 
                             //Personalizacion de elementos
-                            console.log("?cmd=producto-consulta&id=" + bib.id)
-
-                            a.href = "?cmd=producto-consulta&id=" + bib.id;
+                            a.href = "?cmd=producto-consulta&id=" + json.id;
                             card.setAttribute("class", "card");
-                            img.src = bib.imagen;
-                            h3.textContent = bib.nombre;
+                            img.src = json.imagen;
+                            h3.textContent = json.nombre;
 
-
-                        });
-                        //paginacion
-                        nav = document.createElement("nav");
-                        console.log(paginasBib);
-                        bibSection.appendChild(nav);
-                        if (paginasBib > 1) {
-                            let btnI = document.createElement("a");
-                            nav.appendChild(btnI);
-                            btnI.textContent = "<<";
-                            btnI.addEventListener("click", () => {
-                                let limitBib = LIMITBIB;
-                                offsetBib = 0;
-                                traerBiblioteca(offsetBib, limitBib);
-                            });
-                            for (let i = 0; i < paginasBib; i++) {
-                                let btn = document.createElement("a");
-                                nav.appendChild(btn);
-                                btn.textContent = i + 1;
-
-                                if ((offsetBib / LIMITBIB) === i) {
-                                    btn.style.backgroundColor = "#00B4D8";
-                                }
-                                btn.addEventListener("click", () => {
-                                    offsetBib = LIMITBIB * i;
-                                    let limitBib = LIMITBIB;
-
-                                    traerBiblioteca(offsetBib, limitBib);
-                                });
-                            }
-                            let btnF = document.createElement("a");
-                            nav.appendChild(btnF);
-                            btnF.textContent = ">>";
-                            btnF.addEventListener("click", () => {
-                                let limit = LIMITBIB;
-
-                                traerBiblioteca((Math.ceil(paginasBib) - 1) * LIMITBIB, limit);
-                            });
-                        } else {
-                            nav.style.display = "none";
                         }
-                    }else{
-                      bibSection.innerHTML = "";
-
-                        let a = document.createElement("a");
-                        let card = document.createElement("div");
-                        let img = document.createElement("img");
-                        let h3 = document.createElement("h3");
-
-
-                        bibSection.appendChild(card);
-                        card.appendChild(a);
-                        a.appendChild(img);
-                        a.appendChild(h3);
-
-
-                        //Personalizacion de elementos
-                        a.href = "?cmd=producto-consulta&id=" + json.id;
-                        card.setAttribute("class", "card");
-                        img.src = json.imagen;
-                        h3.textContent = json.nombre;
-   
-                    }
                     } catch (e) {
-                                           bibSection.textContent = "No hay resultados";
-                                           console.log(e)
+                        bibSection.textContent = "No hay resultados";
                     }
                 } else {
                     bibSection.textContent = "No hay resultados";
