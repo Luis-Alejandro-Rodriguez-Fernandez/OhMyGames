@@ -40,7 +40,7 @@
 
 /*--------------------*/
 
-nav {
+#nav {
     border-top: 1px solid var(--azuloscuro02);
     border-bottom: 1px solid var(--azuloscuro02);
     border-radius: .5em;
@@ -57,7 +57,7 @@ nav {
 
 }
 
-nav > a {
+#nav > a {
     color: var(--azuloscuro03);
     text-transform: uppercase;
     font-weight: bold;
@@ -163,4 +163,36 @@ nav > a {
     border-radius: .5em;
 
     margin-right: 5em;
+}
+
+/*-----------------------------------*/
+
+nav{    
+    grid-column: span 5;
+    
+    background-color: var(--azuloscuro03);
+    margin: 80px auto 20px;
+    padding: 5px;
+    border: 1px darkgrey solid;
+    border-radius:50px;
+    width:30vw; 
+    height: 60px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#bib nav {
+    grid-column: span 2;
+}
+
+nav a{
+    padding: 8px 12px;
+    border-radius:20px;
+    border: 1px solid var(--bordeblanco);
+}
+
+nav a:hover{
+    background-color: var(--azuloscuro02);
 }
