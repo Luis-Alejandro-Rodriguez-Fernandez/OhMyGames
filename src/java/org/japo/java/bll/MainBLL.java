@@ -79,8 +79,8 @@ public class MainBLL {
         return dao.listarDesarrolladoras();
     }
 
-    public List<Favorito> listarFavorito(int id) {
-        return dao.listarFavoritos(id);
+    public List<Favorito> listarFavorito(int id, int offset, int limit) {
+        return dao.listarFavoritos(id, offset, limit);
     }
 
     public Favorito obtenerFavorito(int userId, int prodId) {
@@ -151,8 +151,8 @@ public class MainBLL {
         return dao.listarTransacciones(id);
     }
 
-    public List<Producto> listarComprasUsuario(int id) {
-        return dao.listarComprasUsuario(id);
+    public List<Producto> listarComprasUsuario(int id, int offset, int limit) {
+        return dao.listarComprasUsuario(id,offset,limit);
     }
 
     public List<Compra> listarCompras(int id) {
@@ -224,6 +224,14 @@ public class MainBLL {
     }
     public List<Desarrolladora> listarDesarrolladorasPagina(int offset, int limit) {
         return dao.listarDesarrolladorasPagina(offset,limit);
+    }
+
+    public long contarFavoritos(int id) {
+        return dao.contarFavoritos(id);
+    }
+
+    public long contarBiblioteca(int id) {
+        return dao.contarBiblioteca(id);
     }
 
 }

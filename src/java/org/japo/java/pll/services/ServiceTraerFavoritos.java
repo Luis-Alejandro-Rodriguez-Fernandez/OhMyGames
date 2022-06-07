@@ -24,8 +24,10 @@ public class ServiceTraerFavoritos extends Service {
 
             String json = "";
             Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
+            int offset = Integer.parseInt(request.getParameter("offset"));
+            int limit = Integer.parseInt(request.getParameter("limit"));
             try {
-                List<Favorito> fs = bll.listarFavorito(u.getId());
+                List<Favorito> fs = bll.listarFavorito(u.getId(),offset,limit);
                 int cont = 0;
                 for (Favorito f : fs) {
                     cont++;

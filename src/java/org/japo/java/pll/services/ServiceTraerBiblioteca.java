@@ -25,8 +25,10 @@ public class ServiceTraerBiblioteca extends Service {
 
             String json = "";
             Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
+            int offset = Integer.parseInt(request.getParameter("offset"));
+            int limit = Integer.parseInt(request.getParameter("limit"));
             try {
-                List<Producto> fs = bll.listarComprasUsuario(u.getId());
+                List<Producto> fs = bll.listarComprasUsuario(u.getId(),offset,limit);
                 int cont = 0;
                 for (Producto f : fs) {
                     cont++;

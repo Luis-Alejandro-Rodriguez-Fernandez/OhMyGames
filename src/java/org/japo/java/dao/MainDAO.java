@@ -1605,10 +1605,10 @@ public class MainDAO {
         return lista;
     }
 
-    public List<Producto> listarComprasUsuario(int _id) {
+    public List<Producto> listarComprasUsuario(int _id, int offset,int limit) {
 
         // SQL
-        final String SQL = "SELECT * from productos WHERE id IN(SELECT producto FROM `compras` WHERE transaccion IN (SELECT id FROM transacciones WHERE usuario = ?))";
+        final String SQL = "SELECT * from productos WHERE id IN(SELECT producto FROM `compras` WHERE transaccion IN (SELECT id FROM transacciones WHERE usuario = ?)) LIMIT ?,?";
 
         // Lista de Productos vacía
         List<Producto> lista = new ArrayList<>();
@@ -1626,6 +1626,8 @@ public class MainDAO {
             try (
                      Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
                 ps.setInt(1, _id);
+                ps.setInt(2, offset);
+                ps.setInt(3, limit);
                 // Obtener Productos
                 try ( ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
@@ -1730,9 +1732,9 @@ public class MainDAO {
 
     //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Favorito">
-    public List<Favorito> listarFavoritos(int _id) {
+    public List<Favorito> listarFavoritos(int _id, int offset, int limit) {
         // SQL
-        final String SQL = "SELECT * FROM favoritos WHERE usuario = ?";
+        final String SQL = "SELECT * FROM favoritos WHERE usuario = ? LIMIT ?,?";
 
         // Lista de Productos vacía
         List<Favorito> lista = new ArrayList<>();
@@ -1752,6 +1754,8 @@ public class MainDAO {
                      Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
                 // Obtener Productos
                 ps.setInt(1, _id);
+                ps.setInt(2, offset);
+                ps.setInt(3, limit);
                 try ( ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
                         // Obtener Campos
@@ -2161,7 +2165,7 @@ public class MainDAO {
         // Devolder la lista de Productos
         return filas;
     }
-    
+
     public long contarDesarrolladoras() {
         // SQL
         final String SQL = "SELECT * FROM desarrolladoras";
@@ -2201,7 +2205,7 @@ public class MainDAO {
     }
 
     public List<Categoria> listarCategoriaPagina(int offset, int limit) {
-            // SQL
+        // SQL
         final String SQL = "SELECT * FROM categorias LIMIT ?,?";
 
         // Lista de Productos vacía
@@ -2221,8 +2225,8 @@ public class MainDAO {
             try (
                      Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
                 // Obtener Productos
-                ps.setInt(1,offset);
-                ps.setInt(2,limit);
+                ps.setInt(1, offset);
+                ps.setInt(2, limit);
                 try ( ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
                         // Obtener Campos
@@ -2244,9 +2248,9 @@ public class MainDAO {
         // Devolder la lista de Productos
         return lista;
     }
-    
-    public List<Desarrolladora> listarDesarrolladorasPagina(int offset, int limit){
-      // SQL
+
+    public List<Desarrolladora> listarDesarrolladorasPagina(int offset, int limit) {
+        // SQL
         final String SQL = "SELECT * FROM desarrolladoras LIMIT ?,?";
 
         // Lista de Productos vacía
@@ -2287,6 +2291,83 @@ public class MainDAO {
 
         // Devolder la lista de Productos
         return lista;
+    }
+
+    public long contarFavoritos(int id) {
+        // SQL
+        final String SQL = "SELECT * FROM favoritos WHERE usuario = ?";
+
+        // Lista de Productos vacía
+        long filas = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1, id);
+                // Obtener Productos
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+//                        if (rs.next()) {
+                            filas ++;
+//                        } 
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        // Devolder la lista de Productos
+        return filas ;
+    }
+
+    public long contarBiblioteca(int id) {
+        // SQL
+        final String SQL = "SELECT * from productos WHERE id IN(SELECT producto FROM `compras` WHERE transaccion IN (SELECT id FROM transacciones WHERE usuario = ?))";
+        // Lista de Productos vacía
+        long filas = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1, id);
+                // Obtener Productos
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+//                        if (rs.next()) {
+                            filas ++;
+//                        }
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        // Devolder la lista de Productos
+        return filas;
     }
 
 }
