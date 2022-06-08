@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class Transaccion {
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     private int id;
 
@@ -66,7 +66,7 @@ public class Transaccion {
 
     @Override
     public String toString() {
-        return "{\"id\":" + id + ",\"usuario\":\"" + usuario + "\",\"fecha\":\"" + sdf.format(fecha) + "\",\"pass\":" + importe + "}";
+        return "{\"id\":" + id + ",\"usuario\":\"" + usuario + "\",\"fecha\":\"" + sdf.format(fecha) + "\",\"importe\":" + importe + "}";
     }
 
 }

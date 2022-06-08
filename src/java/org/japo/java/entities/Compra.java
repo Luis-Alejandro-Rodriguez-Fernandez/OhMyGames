@@ -57,7 +57,6 @@ public class Compra {
     }
 
 
-   
     
         @Override
     public String toString() {

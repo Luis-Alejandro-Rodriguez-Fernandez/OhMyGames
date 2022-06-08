@@ -24,7 +24,9 @@
         <jsp:include page="../../partials/header.jsp"/>
         <main>       
 
-            <div id="main"></div>
+            <div id="main">
+                <img id='loading' src='public/img/loading.gif'>
+            </div>
 
             <%if (cs != null || cs.size() != 0) {%>
             <div id="aside">

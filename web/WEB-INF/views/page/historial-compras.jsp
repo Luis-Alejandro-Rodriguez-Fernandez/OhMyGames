@@ -7,10 +7,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
-List<Transaccion> ts = (List<Transaccion>) request.getAttribute("lista-transacciones");
-List<Compra> cs = (List<Compra>) request.getAttribute("lista-compras");
-SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
+//List<Transaccion> ts = (List<Transaccion>) request.getAttribute("lista-transacciones");
+//List<Compra> cs = (List<Compra>) request.getAttribute("lista-compras");
+//SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 %>
 <!DOCTYPE html>
 <html>
@@ -29,27 +29,9 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 <h3>Fecha de compra</h3>
                 <h3>Importe Total</h3>
             </div>
-            <% for(Transaccion t : ts){%>   
-            <div class="transaction">
-                <section class="id">
-                    <h2><%="#"+t.getId()%></h2>
-                    <p><%=sdf.format(t.getFecha())%></p>
-                    <p><%=t.getImporte()+" €"%></p>
-                </section>
-                <section class="info" >
-                    <% for(Compra c : cs){
-		if(c.getTransaccion() == t.getId()){%>
-                    <article>
-                        <a href="?cmd=producto-consulta&id=<%=c.getProducto().getId()%>">
-                            <img src="<%= c.getProducto().getImagen()%>">
-                            <h3><%= c.getProducto().getNombre()%></h3>
-                            <p><%= c.getPrecio()%>€</p>
-                        </a>
-                    </article>
-                    <%}}%>
-                </section>
-            </div>	
-            <%}%>
+            <div id="main"></div>
+            <nav id="nav"></nav>
+
         </main>        
         <jsp:include page="../../partials/footer.jsp"/>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>

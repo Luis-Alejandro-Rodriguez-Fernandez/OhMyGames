@@ -27,7 +27,14 @@ public class ServiceComprar extends Service {
             Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
             Date d = new Date();
             double importe = Double.parseDouble(request.getParameter("importe"));
-            int id = (int) (Math.random() * (99999999 - 10000000 + 1) - 10000000);
+            int id;
+            boolean idOk = false;
+            do {
+                id = (int) (Math.random() * (99999999 - 10000000 + 1) - 10000000);
+                if (id > 0) {
+                    idOk = true;
+                }
+            } while (!idOk);
             int con = 0;
 
             try {

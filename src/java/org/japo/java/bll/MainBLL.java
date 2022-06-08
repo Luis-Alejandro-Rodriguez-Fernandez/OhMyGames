@@ -152,7 +152,7 @@ public class MainBLL {
     }
 
     public List<Producto> listarComprasUsuario(int id, int offset, int limit) {
-        return dao.listarComprasUsuario(id,offset,limit);
+        return dao.listarComprasUsuario(id, offset, limit);
     }
 
     public List<Compra> listarCompras(int id) {
@@ -215,15 +215,20 @@ public class MainBLL {
         return dao.contarCategorias();
     }
 
+    public long contarTransacciones(int id) {
+        return dao.contarTransacciones(id);
+    }
+
     public long contarDesarrolladoras() {
         return dao.contarDesarrolladoras();
     }
 
     public List<Categoria> listarCategoriasPagina(int offset, int limit) {
-        return dao.listarCategoriaPagina(offset,limit);
+        return dao.listarCategoriaPagina(offset, limit);
     }
+
     public List<Desarrolladora> listarDesarrolladorasPagina(int offset, int limit) {
-        return dao.listarDesarrolladorasPagina(offset,limit);
+        return dao.listarDesarrolladorasPagina(offset, limit);
     }
 
     public long contarFavoritos(int id) {
@@ -232,6 +237,14 @@ public class MainBLL {
 
     public long contarBiblioteca(int id) {
         return dao.contarBiblioteca(id);
+    }
+
+    public List<Transaccion> listarTransaccionesPagina(int offset, int limit) {
+        return dao.listarTransaccionesPagina(offset, limit);
+    }
+
+    public List<Compra> listarComprasTransaccion(int id) {
+       return dao.listarComprasTransaccion(id);
     }
 
 }

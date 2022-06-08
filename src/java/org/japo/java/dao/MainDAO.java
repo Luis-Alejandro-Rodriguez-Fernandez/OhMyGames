@@ -1605,7 +1605,7 @@ public class MainDAO {
         return lista;
     }
 
-    public List<Producto> listarComprasUsuario(int _id, int offset,int limit) {
+    public List<Producto> listarComprasUsuario(int _id, int offset, int limit) {
 
         // SQL
         final String SQL = "SELECT * from productos WHERE id IN(SELECT producto FROM `compras` WHERE transaccion IN (SELECT id FROM transacciones WHERE usuario = ?)) LIMIT ?,?";
@@ -2319,7 +2319,7 @@ public class MainDAO {
                     while (rs.next()) {
                         // Obtener Campos
 //                        if (rs.next()) {
-                            filas ++;
+                        filas++;
 //                        } 
                     }
                 }
@@ -2329,7 +2329,7 @@ public class MainDAO {
         }
 
         // Devolder la lista de Productos
-        return filas ;
+        return filas;
     }
 
     public long contarBiblioteca(int id) {
@@ -2357,7 +2357,7 @@ public class MainDAO {
                     while (rs.next()) {
                         // Obtener Campos
 //                        if (rs.next()) {
-                            filas ++;
+                        filas++;
 //                        }
                     }
                 }
@@ -2370,4 +2370,132 @@ public class MainDAO {
         return filas;
     }
 
+    public long contarTransacciones(int id) {
+        // SQL
+        final String SQL = "SELECT * FROM transacciones WHERE usuario = ?";
+        // Lista de Productos vacía
+        long filas = 0;
+
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1, id);
+                // Obtener Productos
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+//                        if (rs.next()) {
+                        filas++;
+//                        }
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        // Devolder la lista de Productos
+        return filas;
+    }
+
+    public List<Transaccion> listarTransaccionesPagina(int offset, int limit) {
+        // SQL
+        final String SQL = "SELECT * FROM transacciones LIMIT ?,?";
+
+        // Lista de Productos vacía
+        List<Transaccion> lista = new ArrayList<>();
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1, offset);
+                ps.setInt(2, limit);
+                // Obtener Productos
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+                        int id = rs.getInt("id");
+                        int usuario = rs.getInt("usuario");
+                        double precio = rs.getDouble("importe");
+                        Date fecha = rs.getDate("fecha");
+
+                        // Instanciar Producto
+                        Transaccion t = new Transaccion(id, usuario, fecha, precio);
+                        // Producto > Lista
+                        lista.add(t);
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+
+        // Devolder la lista de Productos
+        return lista;
+    }
+
+    public List<Compra> listarComprasTransaccion(int _id) {
+        // SQL
+        final String SQL = "SELECT * FROM compras WHERE transaccion = ?";
+
+        // Lista de Productos vacía
+        List<Compra> lista = new ArrayList<>();
+        // Obtención del Contexto
+        try {
+            // Contexto Inicial para operaciones de nombrado JNDI
+            Context iniCtx = new InitialContext();
+
+            // Contextualizar el contexto
+            Context envCtx = (Context) iniCtx.lookup("java:/comp/env");
+
+            // Acceso al recurso DataSource
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/ohmygames");
+
+            try (
+                     Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1, _id);
+                // Obtener Productos
+                try ( ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        // Obtener Campos
+                        int id = rs.getInt("id");
+                        int transaccion = rs.getInt("transaccion");
+                        int producto = rs.getInt("producto");
+                        double precio = rs.getDouble("precio");
+
+                        // Instanciar Producto
+                        Producto p = this.obtenerProducto(producto);
+                        Compra c = new Compra(id, transaccion, p, precio);
+                        // Producto > Lista
+                        lista.add(c);
+                        System.out.println(c);
+                    }
+                }
+            }
+        } catch (NamingException | SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+//        }
+        // Devolder la lista de Productos
+        return lista;
+    }
 }
