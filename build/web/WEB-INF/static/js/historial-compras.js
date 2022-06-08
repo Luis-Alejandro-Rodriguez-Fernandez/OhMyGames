@@ -9,8 +9,6 @@ let offset = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
     contarTransacciones();
-
-
 });
 
 async function contarTransacciones() {
@@ -62,9 +60,9 @@ async function contarTransacciones() {
                         fecha.textContent = transaccion.fecha;
                         importe.textContent = transaccion.importe;
       
-                        div.classList.add('transaction');
-                        sectId.classList.add('id');
-                        sectInfo.classList.add('info');
+                        div.classList.add("transaction");
+                        sectId.classList.add("id");
+                        sectInfo.classList.add("info");
 
                        fetch("?svc=compras-transaccion&id=" + transaccion.id)
                                 .then(res => res.json())
