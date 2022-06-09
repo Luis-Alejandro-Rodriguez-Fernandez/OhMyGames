@@ -31,6 +31,7 @@
             </div>
             <div id="main"></div>
             <nav id="nav"></nav>
+            <img id="loading" src="public/img/loading.gif" alt="loading"/>
 
         </main>        
         <jsp:include page="../../partials/footer.jsp"/>

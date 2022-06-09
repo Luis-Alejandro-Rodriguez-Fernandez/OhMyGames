@@ -117,3 +117,10 @@ nav a{
 nav a:hover{
     background-color: var(--azuloscuro02);
 }
+
+img #landing{
+    position: absolute;
+    width: 40vw;
+    top:30vh;
+    left:30vw;
+}

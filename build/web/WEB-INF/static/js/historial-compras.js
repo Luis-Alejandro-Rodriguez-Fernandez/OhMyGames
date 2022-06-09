@@ -3,7 +3,7 @@
 let main = document.getElementById("main");
 let nav = document.getElementById("nav");
 
-const LIMIT = 6;
+const LIMIT = 7;
 let paginas = 0;
 let offset = 0;
 
@@ -29,14 +29,16 @@ async function contarTransacciones() {
 }
 
 async function mostrarTransacciones(offset, limit) {
-    main.innerHTML = "<img id='loading' src='public/img/loading.gif'>";
+    let loading = document.getElementById("loading");
+    loading.style.visibility = "visible";
+    main.style.visibility = "hidden";
     await fetch("?svc=transacciones-paginas&offset=" + offset + "&limit=" + limit)
             .then(res => res.json())
             .then(json => {
+                let cont = 0;
                 main.innerHTML = "";
                 if (json.length > 1) {
                     json.forEach((transaccion) => {
-
                         let div = document.createElement("div");
                         let sectId = document.createElement("section");
                         let id = document.createElement("h2");
@@ -54,7 +56,7 @@ async function mostrarTransacciones(offset, limit) {
 
                         id.textContent = transaccion.id;
                         fecha.textContent = transaccion.fecha;
-                        importe.textContent = transaccion.importe+ " €";
+                        importe.textContent = transaccion.importe + " €";
 
                         div.classList.add("transaction");
                         sectId.classList.add("id");
@@ -101,7 +103,14 @@ async function mostrarTransacciones(offset, limit) {
                                         h3.textContent = json.producto.nombre;
                                         p.textContent = json.producto.precio;
                                     }
-                                });
+                                }).finally(() => {
+                            cont++;
+                            console.log(cont)
+                            if (cont === json.length) {
+                                loading.style.visibility = "hidden";
+                                main.style.visibility = "visible";
+                            }
+                        });
 
                     });
 
@@ -136,14 +145,84 @@ async function mostrarTransacciones(offset, limit) {
                         btnF.textContent = ">>";
                         btnF.addEventListener("click", () => {
                             let limit = LIMIT;
-
                             mostrarTransacciones((Math.ceil(paginas) - 1) * LIMIT, limit);
                         });
                     } else {
                         nav.style.display = "none";
                     }
                 } else {
+                    let cont = 0;
+                    let div = document.createElement("div");
+                    let sectId = document.createElement("section");
+                    let id = document.createElement("h2");
+                    let fecha = document.createElement("p");
+                    let importe = document.createElement("p");
+                    let sectInfo = document.createElement("section");
 
+
+                    main.appendChild(div);
+                    div.appendChild(sectId);
+                    sectId.appendChild(id);
+                    sectId.appendChild(fecha);
+                    sectId.appendChild(importe);
+                    div.appendChild(sectInfo);
+
+                    id.textContent = json.id;
+                    fecha.textContent = json.fecha;
+                    importe.textContent = json.importe + " €";
+
+                    div.classList.add("transaction");
+                    sectId.classList.add("id");
+                    sectInfo.classList.add("info");
+
+                    fetch("?svc=compras-transaccion&id=" + json.id)
+                            .then(res => res.json())
+                            .then(json => {
+                                if (json.length > 1) {
+                                    json.forEach((compra) => {
+                                        let art = document.createElement("article");
+                                        let a = document.createElement("a");
+                                        let img = document.createElement("img");
+                                        let h3 = document.createElement("h3");
+                                        let p = document.createElement("p");
+
+                                        sectInfo.appendChild(art);
+                                        art.appendChild(a);
+                                        a.appendChild(img);
+                                        a.appendChild(h3);
+                                        a.appendChild(p);
+
+                                        a.href = "?cmd=producto-consulta&id=" + compra.producto.id;
+                                        img.src = compra.producto.imagen;
+                                        h3.textContent = compra.producto.nombre;
+                                        p.textContent = compra.producto.precio + " €";
+                                    });
+                                } else {
+                                    let art = document.createElement("article");
+                                    let a = document.createElement("a");
+                                    let img = document.createElement("img");
+                                    let h3 = document.createElement("h3");
+                                    let p = document.createElement("p");
+
+                                    sectInfo.appendChild(art);
+                                    art.appendChild(a);
+                                    a.appendChild(img);
+                                    a.appendChild(h3);
+                                    a.appendChild(p);
+
+                                    a.href = "?cmd=producto-consulta&id=" + json.producto.id;
+                                    img.src = json.producto.imagen;
+                                    h3.textContent = json.producto.nombre;
+                                    p.textContent = json.producto.precio;
+                                }
+                            }).finally(() => {
+
+                        cont++;
+                        if (cont === json.length) {
+                            loading.style.visibility = "hidden";
+                            main.style.visibility = "visible";
+                        }
+                    });
 
                     //Paginación
                     nav.innerHTML = "";
@@ -184,10 +263,11 @@ async function mostrarTransacciones(offset, limit) {
                     }
                 }
             });
+
     $(function () {
         $(".id").click(function () {
-            console.log("xdd")
-          $(this).siblings('.info').toggle(500);
+            $(this).siblings('.info').toggle(500);
         });
     });
+
 }

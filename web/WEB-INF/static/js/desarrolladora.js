@@ -78,7 +78,22 @@ function mostrarDesarrolladoras(offset, limit) {
                         aMod.textContent = "Modificar";
                         aMod.href = "?cmd=desarrolladora-modificar&id=" + desarrolladora.id;
                         aDel.textContent = "Borrar";
-                        aDel.href = "?cmd=desarrolladora-borrar&id=" + desarrolladora.id;
+                        aDel.href = "#";
+                        aDel.addEventListener("click", () => {
+                            Swal.fire({
+                                title: 'Quieres eliminar la desarrolladora ' + desarrolladora.nombre + '?',
+                                text: "No será posible revertir esta acción",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Eliminar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location = "?cmd=desarrolladora-borrar&id=" + desarrolladora.id;
+                                }
+                            });
+                        });
 
                         nav.innerHTML = "";
                         if (paginas > 1) {
@@ -134,7 +149,22 @@ function mostrarDesarrolladoras(offset, limit) {
                     aMod.textContent = "Modificar";
                     aMod.href = "?cmd=desarrolladora-modificar&id=" + json.id;
                     aDel.textContent = "Borrar";
-                    aDel.href = "?cmd=desarrolladora-borrar&id=" + json.id;
+                        aDel.href = "#";
+                        aDel.addEventListener("click", () => {
+                            Swal.fire({
+                                title: 'Quieres eliminar la desarrolladora ' + json.nombre + '?',
+                                text: "No será posible revertir esta acción",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Eliminar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location = "?cmd=desarrolladora-borrar&id=" + json.id;
+                                }
+                            });
+                        });
 
                     nav.innerHTML = "";
                     if (paginas > 1) {

@@ -79,7 +79,24 @@ function mostrarCategorias(offset, limit) {
                         aMod.textContent = "Modificar";
                         aMod.href = "?cmd=categoria-modificar&id=" + categoria.id;
                         aDel.textContent = "Borrar";
-                        aDel.href = "?cmd=categoria-borrar&id=" + categoria.id;
+                        aDel.href = "#";
+                         
+                        aDel.addEventListener("click", () => {
+                            Swal.fire({
+                                title: 'Quieres eliminar la categoría ' + categoria.nombre + '?',
+                                text: "No será posible revertir esta acción",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Eliminar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                        window.location = "?cmd=categoria-borrar&id=" + categoria.id;
+                                }
+                            });
+                            });
+                        
 
                         nav.innerHTML = "";
                         if (paginas > 1) {
@@ -136,7 +153,23 @@ function mostrarCategorias(offset, limit) {
                     aMod.textContent = "Modificar";
                     aMod.href = "?cmd=categoria-modificar&id=" + json.id;
                     aDel.textContent = "Borrar";
-                    aDel.href = "?cmd=categoria-borrar&id=" + json.id;
+                    aDel.href = "#";
+                        aDel.addEventListener("click", () => {
+                            Swal.fire({
+                                title: 'Quieres eliminar la categoría ' + json.nombre + '?',
+                                text: "No será posible revertir esta acción",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Eliminar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                        window.location = "?cmd=categoria-borrar&id=" + json.id;
+                                }
+                            });
+                            });
+
                     nav.innerHTML = "";
                     if (paginas > 1) {
                         let btnI = document.createElement("a");
