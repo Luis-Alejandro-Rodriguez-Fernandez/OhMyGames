@@ -3,12 +3,13 @@
 let main = document.getElementById("main");
 let nav = document.getElementById("nav");
 
-const LIMIT = 5;
+const LIMIT = 6;
 let paginas = 0;
 let offset = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
     contarTransacciones();
+
 });
 
 async function contarTransacciones() {
@@ -23,18 +24,13 @@ async function contarTransacciones() {
                 main.innerHTML = "";
                 mostrarTransacciones(offset, limit);
             });
-            
-//    $(document).ready(function () {
-//            console.log("xdd")
-//        $('.id').click(function () {
-//            $(this).siblings('.info').toggle(500);
-//        });
-//    });
+
+
 }
 
- function mostrarTransacciones(offset, limit) {
+async function mostrarTransacciones(offset, limit) {
     main.innerHTML = "<img id='loading' src='public/img/loading.gif'>";
-    fetch("?svc=transacciones-paginas&offset=" + offset + "&limit=" + limit)
+    await fetch("?svc=transacciones-paginas&offset=" + offset + "&limit=" + limit)
             .then(res => res.json())
             .then(json => {
                 main.innerHTML = "";
@@ -58,13 +54,13 @@ async function contarTransacciones() {
 
                         id.textContent = transaccion.id;
                         fecha.textContent = transaccion.fecha;
-                        importe.textContent = transaccion.importe;
-      
+                        importe.textContent = transaccion.importe+ " €";
+
                         div.classList.add("transaction");
                         sectId.classList.add("id");
                         sectInfo.classList.add("info");
 
-                       fetch("?svc=compras-transaccion&id=" + transaccion.id)
+                        fetch("?svc=compras-transaccion&id=" + transaccion.id)
                                 .then(res => res.json())
                                 .then(json => {
 
@@ -85,7 +81,7 @@ async function contarTransacciones() {
                                             a.href = "?cmd=producto-consulta&id=" + compra.producto.id;
                                             img.src = compra.producto.imagen;
                                             h3.textContent = compra.producto.nombre;
-                                            p.textContent = compra.producto.precio;
+                                            p.textContent = compra.producto.precio + " €";
                                         });
                                     } else {
                                         let art = document.createElement("article");
@@ -188,4 +184,10 @@ async function contarTransacciones() {
                     }
                 }
             });
+    $(function () {
+        $(".id").click(function () {
+            console.log("xdd")
+          $(this).siblings('.info').toggle(500);
+        });
+    });
 }

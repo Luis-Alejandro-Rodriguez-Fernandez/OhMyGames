@@ -2410,7 +2410,7 @@ public class MainDAO {
 
     public List<Transaccion> listarTransaccionesPagina(int offset, int limit) {
         // SQL
-        final String SQL = "SELECT * FROM transacciones LIMIT ?,?";
+        final String SQL = "SELECT * FROM transacciones ORDER BY fecha DESC LIMIT ?,?";
 
         // Lista de Productos vacía
         List<Transaccion> lista = new ArrayList<>();

@@ -37,5 +37,6 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="public/js/historial-compras.js"></script>
+        <script type="text/javascript" charset="utf-8" src="public/js/historial-query.js"></script>
     </body>
 </html>
