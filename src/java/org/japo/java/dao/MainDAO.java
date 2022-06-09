@@ -2408,9 +2408,9 @@ public class MainDAO {
         return filas;
     }
 
-    public List<Transaccion> listarTransaccionesPagina(int offset, int limit) {
+    public List<Transaccion> listarTransaccionesPagina(int offset, int limit, int _id) {
         // SQL
-        final String SQL = "SELECT * FROM transacciones ORDER BY fecha DESC LIMIT ?,?";
+        final String SQL = "SELECT * FROM transacciones WHERE usuario = ? ORDER BY fecha DESC LIMIT ?,?";
 
         // Lista de Productos vacía
         List<Transaccion> lista = new ArrayList<>();
@@ -2427,8 +2427,9 @@ public class MainDAO {
 
             try (
                      Connection conn = ds.getConnection();  PreparedStatement ps = conn.prepareStatement(SQL)) {
-                ps.setInt(1, offset);
-                ps.setInt(2, limit);
+                ps.setInt(1, _id);
+                ps.setInt(2, offset);
+                ps.setInt(3, limit);
                 // Obtener Productos
                 try ( ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {

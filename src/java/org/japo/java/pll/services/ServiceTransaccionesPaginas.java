@@ -26,8 +26,9 @@ public class ServiceTransaccionesPaginas extends Service{
         try {
             int offset = Integer.parseInt(request.getParameter("offset"));
             int limit = Integer.parseInt(request.getParameter("limit"));
+            Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
            
-            List<Transaccion> ps = bll.listarTransaccionesPagina(offset, limit);
+            List<Transaccion> ps = bll.listarTransaccionesPagina(offset, limit,u.getId());
             if (ps == null) {
                 json = "{\"ok\":false,\"msg\":\"Error General1\"}";
             } else {

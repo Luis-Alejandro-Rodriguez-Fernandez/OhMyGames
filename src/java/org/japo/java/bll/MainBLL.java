@@ -239,8 +239,8 @@ public class MainBLL {
         return dao.contarBiblioteca(id);
     }
 
-    public List<Transaccion> listarTransaccionesPagina(int offset, int limit) {
-        return dao.listarTransaccionesPagina(offset, limit);
+    public List<Transaccion> listarTransaccionesPagina(int offset, int limit, int id) {
+        return dao.listarTransaccionesPagina(offset, limit,id);
     }
 
     public List<Compra> listarComprasTransaccion(int id) {

@@ -121,7 +121,7 @@ btnPre.addEventListener("click", () => {
 
 
 
-function mostrarProductos(offset, limit, cat, des, tipo, min, max) {        
+function mostrarProductos(offset, limit, cat, des, tipo, min, max) {
     cards.innerHTML = "<img id='loading' src='public/img/loading.gif'>";
 
     fetch("?svc=productos-paginados&offset=" + offset + "&limit=" + limit
@@ -150,10 +150,99 @@ function mostrarProductos(offset, limit, cat, des, tipo, min, max) {
                         card.setAttribute("class", "card");
                         p.textContent = "Añadir prducto";
                     }
+                    if (json.length > 1) {
+                        //Lista de productos
+                        json.forEach((producto) => {
 
-                    //Lista de productos
-                    json.forEach((producto) => {
+                            //Creacion de elementos
+                            let card = document.createElement("div");
+                            let cardDiv1 = document.createElement("div");
+                            let cardDiv2 = document.createElement("div");
+                            let prcDiv = document.createElement("div");
+                            let delDiv = document.createElement("div");
+                            let name = document.createElement("h3");
+                            let price = document.createElement("p");
+                            let img = document.createElement("img");
+                            let desc = document.createElement("span");
+                            let a = document.createElement("a");
+                            let del = document.createElement("del");
+                            let em = document.createElement("p");
 
+                            //Enganche de elementos
+                            cards.appendChild(a);
+
+                            a.appendChild(card);
+                            card.appendChild(cardDiv1);
+                            card.appendChild(cardDiv2);
+                            cardDiv1.appendChild(img);
+                            cardDiv1.appendChild(desc);
+                            cardDiv2.appendChild(name);
+                            cardDiv2.appendChild(prcDiv);
+                            prcDiv.appendChild(delDiv);
+                            delDiv.appendChild(del);
+                            delDiv.appendChild(em);
+                            prcDiv.appendChild(price);
+
+                            //Personalizacion de elementos
+                            a.href = "?cmd=producto-consulta&id=" + producto.id;
+                            card.setAttribute("class", "card");
+                            img.src = producto.imagen;
+                            desc.textContent = producto.descuento + "%";
+                            name.textContent = producto.nombre;
+                            del.textContent = (producto.precio).toFixed(2) + " ";
+                            em.textContent = " €";
+                            price.textContent = (producto.precio - (producto.precio * producto.descuento / 100)).toFixed(2) + " €";
+
+                            delDiv.style.display = "flex";
+                            del.style.marginRight = "5px";
+
+                        });
+
+                        //Paginacion
+                        pag.innerHTML = "";
+                        if (paginas > 1) {
+                            pag.style.display = "flex";
+                            let btnI = document.createElement("a");
+                            pag.appendChild(btnI);
+                            btnI.textContent = "<<";
+                            btnI.addEventListener("click", () => {
+                                offset = 0;
+                                let limit = LIMIT;
+                                if (admin && offset === 0) {
+                                    limit = 11;
+                                }
+                                mostrarProductos(offset, limit, cat, des, tipo, min, max);
+                            });
+                            for (let i = 0; i < paginas; i++) {
+                                let btn = document.createElement("a");
+                                pag.appendChild(btn);
+                                btn.textContent = i + 1;
+                                if ((offset / LIMIT) === i) {
+                                    btn.style.backgroundColor = "#00B4D8";
+                                }
+                                btn.addEventListener("click", () => {
+                                    offset = LIMIT * i;
+                                    let limit = LIMIT;
+                                    if (admin && offset === 0) {
+                                        limit = 11;
+                                    }
+                                    mostrarProductos(offset, limit, cat, des, tipo, min, max);
+                                });
+                            }
+                            let btnF = document.createElement("a");
+                            pag.appendChild(btnF);
+                            btnF.textContent = ">>";
+                            btnF.addEventListener("click", () => {
+                                let limit = LIMIT;
+                                if (admin && offset === 0) {
+                                    limit = 11;
+                                }
+                                mostrarProductos((Math.ceil(paginas) - 1) * LIMIT, limit, cat, des, tipo, min, max);
+                            });
+                        } else {
+                            pag.style.display = "none";
+                        }
+                    } else {
                         //Creacion de elementos
                         let card = document.createElement("div");
                         let cardDiv1 = document.createElement("div");
@@ -184,63 +273,68 @@ function mostrarProductos(offset, limit, cat, des, tipo, min, max) {
                         prcDiv.appendChild(price);
 
                         //Personalizacion de elementos
-                        a.href = "?cmd=producto-consulta&id=" + producto.id;
+                        a.href = "?cmd=producto-consulta&id=" + json.id;
                         card.setAttribute("class", "card");
-                        img.src = producto.imagen;
-                        desc.textContent = producto.descuento + "%";
-                        name.textContent = producto.nombre;
-                        del.textContent = (producto.precio).toFixed(2) + " ";
+                        img.src = json.imagen;
+                        desc.textContent = json.descuento + "%";
+                        name.textContent = json.nombre;
+                        del.textContent = (json.precio).toFixed(2) + " ";
                         em.textContent = " €";
-                        price.textContent = (producto.precio - (producto.precio * producto.descuento / 100)).toFixed(2) + " €";
+                        price.textContent = (json.precio - (json.precio * json.descuento / 100)).toFixed(2) + " €";
 
                         delDiv.style.display = "flex";
                         del.style.marginRight = "5px";
 
-                    });
 
-                    //Paginacion
-                    pag.innerHTML = "";
-                    if (paginas > 1) {
-                        let btnI = document.createElement("a");
-                        pag.appendChild(btnI);
-                        btnI.textContent = "<<";
-                        btnI.addEventListener("click", () => {
-                            offset = 0;
-                            let limit = LIMIT;
-                            if (admin && offset === 0) {
-                                limit = 11;
-                            }
-                            mostrarProductos(offset, limit, cat, des, tipo, min, max);
-                        });
-                        for (let i = 0; i < paginas; i++) {
-                            let btn = document.createElement("a");
-                            pag.appendChild(btn);
-                            btn.textContent = i + 1;
-                            if ((offset / LIMIT) === i) {
-                                btn.style.backgroundColor = "#00B4D8";
-                            }
-                            btn.addEventListener("click", () => {
-                                offset = LIMIT * i;
+                        //Paginacion
+                        pag.innerHTML = "";
+                        if (paginas > 1) {
+                            pag.style.display = "flex";
+                            let btnI = document.createElement("a");
+                            pag.appendChild(btnI);
+                            btnI.textContent = "<<";
+                            btnI.addEventListener("click", () => {
+                                offset = 0;
                                 let limit = LIMIT;
                                 if (admin && offset === 0) {
                                     limit = 11;
                                 }
                                 mostrarProductos(offset, limit, cat, des, tipo, min, max);
                             });
-                        }
-                        let btnF = document.createElement("a");
-                        pag.appendChild(btnF);
-                        btnF.textContent = ">>";
-                        btnF.addEventListener("click", () => {
-                            let limit = LIMIT;
-                            if (admin && offset === 0) {
-                                limit = 11;
+                            for (let i = 0; i < paginas; i++) {
+                                let btn = document.createElement("a");
+                                pag.appendChild(btn);
+                                btn.textContent = i + 1;
+                                if ((offset / LIMIT) === i) {
+                                    btn.style.backgroundColor = "#00B4D8";
+                                }
+                                btn.addEventListener("click", () => {
+                                    offset = LIMIT * i;
+                                    let limit = LIMIT;
+                                    if (admin && offset === 0) {
+                                        limit = 11;
+                                    }
+                                    mostrarProductos(offset, limit, cat, des, tipo, min, max);
+                                });
                             }
-                            mostrarProductos((Math.ceil(paginas) - 1) * LIMIT, limit, cat, des, tipo, min, max);
-                        });
+                            let btnF = document.createElement("a");
+                            pag.appendChild(btnF);
+                            btnF.textContent = ">>";
+                            btnF.addEventListener("click", () => {
+                                let limit = LIMIT;
+                                if (admin && offset === 0) {
+                                    limit = 11;
+                                }
+                                mostrarProductos((Math.ceil(paginas) - 1) * LIMIT, limit, cat, des, tipo, min, max);
+                            });
+                        } else {
+                            pag.style.display = "none";
+                        }
                     }
                 } else {
                     pag.innerHTML = "";
+                    pag.style.display = "none";
+
                     cards.textContent = "No hay resultados";
                 }
             });
