@@ -1,5 +1,6 @@
 /* global fetch */
 
+let main = document.querySelector("main");
 let cards = document.getElementById("cards");
 let pag = document.getElementById("pag");
 let cat = document.getElementById("cat");
@@ -11,6 +12,10 @@ let btnPre = document.getElementById("btn-pre");
 let usuario = document.getElementById("user-id");
 let insert = document.getElementById("insert");
 let mod = document.getElementById("mod");
+let cDiv = document.getElementById("cDiv");
+let block = document.getElementById("block");
+let cp = document.getElementById("cp");
+let cBtn = document.getElementById("cBtn");
 
 //Cap 32 units
 const LIMIT = 12;
@@ -104,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     contarProductos();
+    cookies();
 });
 
 cat.addEventListener("change", () => {
@@ -357,4 +363,19 @@ function contarProductos() {
                 mostrarProductos(offset, limit, cat, des, tipo, min, max);
             });
 }
+
+cBtn.addEventListener("click", () => {
+    document.querySelector("body").className = "";
+    block.style.display = "none";
+            document.cookie = "ohmygames";
+});
+
+function cookies() {
+    if (document.cookie === "") {
+        document.querySelector("body").className = "notScroll";
+    } else {
+        block.style.display = "none";
+    }
+}
+
 

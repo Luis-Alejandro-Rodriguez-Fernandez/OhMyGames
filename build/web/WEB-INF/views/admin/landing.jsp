@@ -20,6 +20,12 @@ List<Desarrolladora> desarrolladoras = (List<Desarrolladora>) request.getAttribu
         <link href="public/img/logo.png" rel="icon" type="image/x-icon" />
     </head>
     <body>
+        <div id="block">
+            <div id="cDiv">
+                <p id="cp">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque vero recusandae perferendis excepturi accusantium tenetur aliquid nam impedit pariatur consequatur. Odio, voluptatem hic! Alias accusamus excepturi soluta dolores ipsa labore.</p>
+                <a id="cBtn">Aceptar</a>
+            </div>
+        </div>
         <jsp:include page="../../partials/header.jsp"/>
         <nav id="filter">
             <select id="cat" name="cat">
@@ -50,7 +56,9 @@ List<Desarrolladora> desarrolladoras = (List<Desarrolladora>) request.getAttribu
             <div id="cards"></div>
         </main>
         <nav id="pag"></nav>
+
         <jsp:include page="../../partials/footer.jsp"/>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.all.min.js"></script>
         <script src="public/js/landing.js"></script>
     </body>

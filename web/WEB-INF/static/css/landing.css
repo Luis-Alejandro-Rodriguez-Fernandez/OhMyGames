@@ -24,20 +24,20 @@ main{
 
 #filter{
     margin-bottom: 20px;
-    
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     background-color: var(--azuloscuro01);
-    
+
     border: 1px solid var(--bordeblanco);
     border-radius:50px;
-    
+
     width:60vw;
-    
+
     margin: 80px auto 0;
-    
+
     padding: 1em 2em;
 }
 
@@ -225,4 +225,43 @@ main{
 #pag a:hover{
     background-color: #303030;
     transition:1s;
+}
+
+#block{
+    position: absolute;
+
+    top: 0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 10000;
+}
+
+.notScroll{
+    overflow-y: hidden;
+}
+
+#cDiv{
+    position: absolute;
+    height: 90px;
+    padding: 10px;
+    width:100%;
+    display: flex;
+    background-color: rgba(255, 250, 250, 0.7);
+    bottom: 1px;
+}
+
+#cBtn{
+    background-color: #104BB6;
+    border-radius: 8px 8px 0;
+    text-align: center;
+    height: 50px;
+    margin-right: 18px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+#cBtn:hover{
+    background-color: #03045E;
 }
