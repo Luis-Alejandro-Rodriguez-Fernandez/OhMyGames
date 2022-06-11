@@ -17,21 +17,23 @@ document.addEventListener("DOMContentLoaded", () => {
     contarBiblioteca();
 });
 
-btnFav.addEventListener("click", () => {
-    bibSection.style.display = "none";
-    favSection.style.display = "grid";
+if (!admin) {
+    btnFav.addEventListener("click", () => {
+        bibSection.style.display = "none";
+        favSection.style.display = "grid";
 
-    btnFav.className = "select";
-    btnBib.className = "";
-});
+        btnFav.className = "select";
+        btnBib.className = "";
+    });
 
-btnBib.addEventListener("click", () => {
-    bibSection.style.display = "grid";
-    favSection.style.display = "none";
+    btnBib.addEventListener("click", () => {
+        bibSection.style.display = "grid";
+        favSection.style.display = "none";
 
-    btnBib.className = "select";
-    btnFav.className = "";
-});
+        btnBib.className = "select";
+        btnFav.className = "";
+    });
+}
 
 
 
@@ -55,8 +57,10 @@ function contarFavoritos() {
                     paginasFav = json.paginas / LIMITFAV;
                 }
                 let limit = LIMITFAV;
-                favSection.innerHTML = "";
-                traerFavoritos(offsetFav, limit);
+                if (!admin) {
+                    favSection.innerHTML = "";
+                    traerFavoritos(offsetFav, limit);
+                }
             });
 }
 
@@ -130,24 +134,24 @@ function traerFavoritos(offsetFav, limitFav) {
                     } catch (e) {
                         favSection.innerHTML = "";
 
-                            let a = document.createElement("a");
-                            let card = document.createElement("div");
-                            let img = document.createElement("img");
-                            let X = document.createElement("h4");
+                        let a = document.createElement("a");
+                        let card = document.createElement("div");
+                        let img = document.createElement("img");
+                        let X = document.createElement("h4");
 
-                            favSection.appendChild(card);
-                            card.appendChild(a);
-                            a.appendChild(img);
-                            card.appendChild(X);
+                        favSection.appendChild(card);
+                        card.appendChild(a);
+                        a.appendChild(img);
+                        card.appendChild(X);
 
-                            //Personalizacion de elementos
-                            a.href = "?cmd=producto-consulta&id=" + json.id;
-                            card.setAttribute("class", "card");
-                            img.src = json.imagen;
-                            X.textContent = "X";
-                            X.addEventListener("click", () => {
-                                quitarFavorito(json.id);
-                            });
+                        //Personalizacion de elementos
+                        a.href = "?cmd=producto-consulta&id=" + json.id;
+                        card.setAttribute("class", "card");
+                        img.src = json.imagen;
+                        X.textContent = "X";
+                        X.addEventListener("click", () => {
+                            quitarFavorito(json.id);
+                        });
 
                     }
                 } else {
@@ -164,9 +168,10 @@ function contarBiblioteca() {
                     paginasBib = json.paginas / LIMITBIB;
                 }
                 let limit = LIMITBIB;
-
-                bibSection.innerHTML = "";
-                traerBiblioteca(offsetBib, limit);
+                if (!admin) {
+                    bibSection.innerHTML = "";
+                    traerBiblioteca(offsetBib, limit);
+                }
             });
 }
 

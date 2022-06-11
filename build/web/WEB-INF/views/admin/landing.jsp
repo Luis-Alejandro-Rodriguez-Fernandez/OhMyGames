@@ -20,12 +20,12 @@ List<Desarrolladora> desarrolladoras = (List<Desarrolladora>) request.getAttribu
         <link href="public/img/logo.png" rel="icon" type="image/x-icon" />
     </head>
     <body>
-        <div id="block">
+<!--        <div id="block">
             <div id="cDiv">
-                <p id="cp">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque vero recusandae perferendis excepturi accusantium tenetur aliquid nam impedit pariatur consequatur. Odio, voluptatem hic! Alias accusamus excepturi soluta dolores ipsa labore.</p>
+                <p id="cp"></p>
                 <a id="cBtn">Aceptar</a>
             </div>
-        </div>
+        </div>-->
         <jsp:include page="../../partials/header.jsp"/>
         <nav id="filter">
             <select id="cat" name="cat">

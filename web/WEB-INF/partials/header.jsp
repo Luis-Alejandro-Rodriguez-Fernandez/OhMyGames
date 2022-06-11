@@ -248,7 +248,9 @@
     let admin = false;
 
 document.addEventListener("DOMContentLoaded",()=>{
+    if(user){
     consultarAdmin();
+    }
 });
 
     //Menú
@@ -326,7 +328,6 @@ document.addEventListener("DOMContentLoaded",()=>{
         await fetch("?svc=consultar-grupo")
                 .then(res => res.json())
                 .then(json => {
-//                    console.log(json.admin)
                     if (json.admin) {
                         admin = true;
                     } else {
