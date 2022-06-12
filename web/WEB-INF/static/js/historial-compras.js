@@ -58,9 +58,9 @@ async function mostrarTransacciones(offset, limit) {
                             sectId.appendChild(importe);
                             div.appendChild(sectInfo);
 
-                            id.textContent = "#"+json.id;
+                            id.textContent = "#"+transaccion.id;
                             fecha.textContent = transaccion.fecha;
-                            importe.textContent = (transaccion.importe).toFixeD(2) + " €";
+                            importe.textContent = (transaccion.importe).toFixed(2) + " €";
 
                             div.classList.add("transaction");
                             sectId.classList.add("id");
@@ -105,7 +105,7 @@ async function mostrarTransacciones(offset, limit) {
                                             a.href = "?cmd=producto-consulta&id=" + json.producto.id;
                                             img.src = json.producto.imagen;
                                             h3.textContent = json.producto.nombre;
-                                            p.textContent = json.producto.precio;
+                                            p.textContent = json.precio;
                                         }
                                     }).finally(() => {
                                 cont++;
@@ -219,7 +219,7 @@ async function mostrarTransacciones(offset, limit) {
                                         a.href = "?cmd=producto-consulta&id=" + json.producto.id;
                                         img.src = json.producto.imagen;
                                         h3.textContent = json.producto.nombre;
-                                        p.textContent =(json.producto.precio).toFixed(2) +" €";
+                                        p.textContent =(json.precio).toFixed(2) +" €";
                                     }
                                 }).finally(() => {
 
