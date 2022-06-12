@@ -87,7 +87,7 @@ async function mostrarTransacciones(offset, limit) {
                                                 a.href = "?cmd=producto-consulta&id=" + compra.producto.id;
                                                 img.src = compra.producto.imagen;
                                                 h3.textContent = compra.producto.nombre;
-                                                p.textContent = (compra.producto.precio).toFixed(2) + " €";
+                                                p.textContent = (compra.precio).toFixed(2) + " €";
                                             });
                                         } else {
                                             let art = document.createElement("article");
@@ -201,7 +201,7 @@ async function mostrarTransacciones(offset, limit) {
                                             a.href = "?cmd=producto-consulta&id=" + compra.producto.id;
                                             img.src = compra.producto.imagen;
                                             h3.textContent = compra.producto.nombre;
-                                            p.textContent = (compra.producto.precio).toFixed(2) + " €";
+                                            p.textContent = (compra.precio).toFixed(2) + " €";
                                         });
                                     } else {
                                         let art = document.createElement("article");
