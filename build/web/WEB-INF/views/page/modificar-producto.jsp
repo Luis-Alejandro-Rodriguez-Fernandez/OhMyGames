@@ -87,14 +87,17 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 </div>
                 <div>
                     <div class="field">
-                        <input type="text" name="id" id="id-prod" value="<%=p.getId()%>">
+                        <input type="text" name="id" id="id-prod" value="<%=p.getId()%>"/>
                         <label for="imga">Imagen</label> 
                         <input type="file" id="imga" name="imga">
-                        <input id="imgUp" name="imgUp" value="<%=p.getImagen()%>">
                     </div>                    
-                    <img id="imgLoad" src="<%=p.getImagen()%>" alt="alt"/>
+                    <img id="imgLoad" src="<%=p.getImagen()%>" alt="<%=p.getNombre()%>"/>
                 </div>
                 <a id="modBtn">Modificar Producto</a>
+                <input id="imgUp" name="imgUp" value="<%=p.getImagen()%>"/>
+                <%
+                System.out.println(p.getImagen());
+                %>
             </form>
         </main>
         <jsp:include page="../../partials/footer.jsp"/>

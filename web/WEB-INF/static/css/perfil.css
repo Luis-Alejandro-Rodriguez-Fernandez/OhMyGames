@@ -75,6 +75,7 @@
 #favs {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    place-items:center;
     gap: .5em;
 
     padding: 1em;
@@ -200,4 +201,20 @@ nav a{
 
 nav a:hover{
     background-color: var(--azuloscuro02);
+}
+
+@media screen and (max-width:1080px){
+    #favs {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #favs .card {
+        height: 11em;
+        width: 8em;
+    }
+    
+    #favs .card > a img{
+        height: 11em;
+        width: 8em;
+    }
 }

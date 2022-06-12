@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                                 listLook.appendChild(a);
                                 a.appendChild(li);
                                 a.href = "?cmd=producto-consulta&id=" + producto.id;
-                                li.textContent = producto.nombre + " - " + producto.precio + "€";
+                                li.textContent = producto.nombre + " - " + (producto.precio - (producto.precio * producto.descuento)/100).toFixed(2) + "€";
                             });
                         } else {
                             listLook.style.display = "block";

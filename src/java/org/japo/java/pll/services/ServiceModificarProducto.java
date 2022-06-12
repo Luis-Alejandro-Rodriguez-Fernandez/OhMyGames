@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
+import org.japo.java.entities.Producto;
 import org.japo.java.entities.Usuario;
 
 /**
@@ -27,7 +28,7 @@ public class ServiceModificarProducto extends Service {
             Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
             if (u.getGrupo() == 2) {
                 try {
-                    
+
                     int id = Integer.parseInt(request.getParameter("id"));
                     String nombre = request.getParameter("nombre");
                     double precio = Double.parseDouble(request.getParameter("precio"));
@@ -39,9 +40,11 @@ public class ServiceModificarProducto extends Service {
                     String img = request.getParameter("imgUp");
                     String date = request.getParameter("date");
 
-                    System.out.println(descripcion);
+                    Producto p = bll.obtenerProducto(id);
+
+                    System.out.println();
                     //TODO Change to Updtae
-                    boolean res = bll.modificarProducto(id,nombre, precio, descuento, tipo, categoria, desarrolladora, descripcion, img, date);
+                    boolean res = bll.modificarProducto(id, nombre, precio, descuento, tipo, categoria, desarrolladora, descripcion, img.equals("undefined") ? p.getImagen() : img, date);
 
                     if (res) {
                         mod = 1;

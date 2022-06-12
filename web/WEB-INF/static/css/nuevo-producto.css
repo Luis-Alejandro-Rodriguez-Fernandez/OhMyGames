@@ -120,3 +120,7 @@ main form img {
     width:240px;
     margin-bottom: 10px; 
 }
+
+#imga{
+    position: absolute;
+}

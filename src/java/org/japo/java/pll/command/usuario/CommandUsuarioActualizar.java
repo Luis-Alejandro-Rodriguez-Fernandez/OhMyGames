@@ -15,12 +15,12 @@ import org.japo.java.pll.command.Command;
  * @author Luis Alejandro Rodríguez Fernández -
  * luisalejandro.rodriguez.alum@iescamp.es
  */
-public class CommandUsuarioActualizar extends Command{
+public class CommandUsuarioActualizar extends Command {
 
     @Override
     public void process() throws ServletException, IOException {
-  if (request.getSession(false).getAttribute("usuario") != null) {
-            String page="redirect/redirect-perfil";
+        if (request.getSession(false).getAttribute("usuario") != null) {
+            String page = "redirect/redirect-perfil";
             Usuario u = (Usuario) request.getSession(false).getAttribute("usuario");
             String email = request.getParameter("email");
             String user = request.getParameter("user");
@@ -29,30 +29,22 @@ public class CommandUsuarioActualizar extends Command{
             String img = request.getParameter("imgUp");
             System.out.println(img);
             boolean mod = false;
+            System.out.println(pass.equals("") + " xd");
             try {
-                if (pass.isEmpty() && img == null || img.isEmpty()) {
-                    mod = bll.modificarUsuario(u.getId(), user, email);
-                } else if(img == null || img.isEmpty() || img.equalsIgnoreCase("undefined")){
-                    if(pass.equals(pass2)){
-                    mod = bll.modificarUsuarioPass(u.getId(), user, email, pass);
-                    }
-                } else if(pass.isEmpty()){
-                    mod = bll.modificarUsuarioImg(u.getId(), user, email, img);
-                }else{
-                    mod = bll.modificarUsuarioAll(u.getId(), user, email, pass, img);
-                }
+                mod = bll.modificarUsuarioAll(u.getId(), user, email,
+                        pass.isEmpty() || pass.equals("") || pass.equals("") ? u.getPassword() : pass,
+                        img.equals("undefined") ? u.getAvatar() : img);
+
                 if (mod) {
 
                     Usuario ua = bll.obtenerUsuarioUs(user);
                     request.getSession(false).setAttribute("usuario", ua);
-                } else {
-
                 }
             } catch (Exception e) {
 
             }
 
             forward(page);
-    }
+        }
     }
 }
