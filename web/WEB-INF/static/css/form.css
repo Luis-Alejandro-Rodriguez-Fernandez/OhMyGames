@@ -83,3 +83,43 @@ main form input{
     background-color: var(--azuloscuro02);
     transition: 1s;
 }
+
+@media screen and (orientation : portrait){
+
+#error{
+    visibility: hidden;
+    color : white;
+    background-color: rgba(250,50,50,0.7);
+    padding: 7px;
+    margin-bottom:2em;
+    width: 30em;
+    text-align: center;
+    height: 30px;
+}
+
+form h2 {
+    width: 100%;
+    padding-bottom: 1em;
+    border-bottom: 1px solid var(--bordeblanco);
+    text-align: center;
+}
+
+main form label{
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: white;
+}
+
+main form input{
+    text-align: center;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 220px;
+}
+
+
+
+}

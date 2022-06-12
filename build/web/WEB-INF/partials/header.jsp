@@ -112,11 +112,11 @@
         padding: .3rem;
         margin: .5em;
 
-        width: 30rem;
+        width: 20rem;
     }
 
     #list-look {
-        width: 30rem;
+        width: 20rem;
         list-style: none;
 
         display: flex;
@@ -234,6 +234,12 @@
         margin-left:25px;
         cursor: pointer;
     }
+    
+    @media (min-width: 1400px){
+    #cards{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
 </style>
 <script>
     let finder = document.getElementById("finder");

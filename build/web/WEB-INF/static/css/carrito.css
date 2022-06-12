@@ -156,7 +156,7 @@ input[type="text"] {
 #ratio > div > label {
     cursor:pointer;
     margin-bottom: .5em;
-    
+
     font-size: 1.5em;
 
     border-bottom: 1px solid var(--bordeblanco);
@@ -206,3 +206,18 @@ div.fieldset > label {
     visibility: hidden;
 }
 
+@media screen and (orientation : portrait){
+    main {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    #aside{
+        position:static;
+        width: 95%;
+    }
+    
+    #main > section {
+        width: 100%;
+    }
+}

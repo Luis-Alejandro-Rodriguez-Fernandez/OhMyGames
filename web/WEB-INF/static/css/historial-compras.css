@@ -124,3 +124,14 @@ img #landing{
     top:30vh;
     left:30vw;
 }
+
+@media screen and (orientation : portrait){
+    main {
+        flex-direction: column;
+        width: 95%;
+    }
+    
+    .id,div{
+       font-size:22px; 
+    }
+}

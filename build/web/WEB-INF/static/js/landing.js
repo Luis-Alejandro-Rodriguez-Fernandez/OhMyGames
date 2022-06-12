@@ -22,12 +22,20 @@ const LIMIT = 12;
 let offset = 0;
 let paginas = 0;
 
+let regex = /^[0-9.,]/;
 //LIMITED INPUTS
 min.addEventListener("keypress", (event) => {
     if (event.key === "e") {
         event.preventDefault();
     }
 });
+
+//min.addEventListener("keypress", (event) => {
+//    console.log(regex.test(event.key))
+//    if (!min.test(event.key)) {
+//        event.preventDefault();
+//    }
+//});
 
 min.addEventListener("input", () => {
     if (parseInt(min.value) >= 99) {

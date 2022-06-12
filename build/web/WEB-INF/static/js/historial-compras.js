@@ -30,8 +30,11 @@ async function contarTransacciones() {
 
 async function mostrarTransacciones(offset, limit) {
     let loading = document.getElementById("loading");
+    let cabecera = document.querySelector("main div");
+    
     loading.style.visibility = "visible";
     main.style.visibility = "hidden";
+    cabecera.style.visibility = "hidden";
     await fetch("?svc=transacciones-paginas&offset=" + offset + "&limit=" + limit)
             .then(res => res.json())
             .then(json => {
@@ -110,6 +113,7 @@ async function mostrarTransacciones(offset, limit) {
                                 if (cont === json.length) {
                                     loading.style.visibility = "hidden";
                                     main.style.visibility = "visible";
+                                    cabecera.style.visibility = "visible";
                                 }
                             });
 
@@ -223,6 +227,7 @@ async function mostrarTransacciones(offset, limit) {
                             if (cont === 1) {
                                 loading.style.visibility = "hidden";
                                 main.style.visibility = "visible";
+                                cabecera.style.visibility = "visible";
                             }
                         });
 
@@ -271,6 +276,7 @@ async function mostrarTransacciones(offset, limit) {
                     nav.style.display = "none";
                     loading.style.visibility = "hidden";
                     main.style.visibility = "visible";
+                    cabecera.style.visibility = "visible";
                 }
             });
 

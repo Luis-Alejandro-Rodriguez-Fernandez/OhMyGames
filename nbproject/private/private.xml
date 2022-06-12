@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/css/landing.css</file>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/views/admin/landing.jsp</file>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/css/general.css</file>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/js/landing.js</file>
-            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/web/WEB-INF/static/css/producto.css</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/pll/services/ServiceNuevoProducto.java</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/dao/MainDAO.java</file>
+            <file>file:/E:/CopiaClase/00-PFC/OhMyGames/src/java/org/japo/java/bll/MainBLL.java</file>
         </group>
     </open-files>
 </project-private>

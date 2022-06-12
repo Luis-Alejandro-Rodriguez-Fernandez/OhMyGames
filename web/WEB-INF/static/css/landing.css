@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 main{
-    min-width: 1350px;
+    /*min-width: 1350px;*/
     width: 96%;
 
     margin:10px auto;
@@ -34,8 +34,8 @@ main{
     border: 1px solid var(--bordeblanco);
     border-radius:50px;
 
+    min-width:653px;
     width:60vw;
-
     margin: 80px auto 0;
 
     padding: 1em 2em;
@@ -61,11 +61,16 @@ main{
     width: 5em;
 }
 
+#filter label{
+    margin-bottom: .3em;
+}
+
 /*------------------------------------------*/
 
 #cards{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    place-items: center;
     gap: 1em;
 
     padding: 0 15px 15px;
@@ -97,6 +102,7 @@ main{
 /*------------------------------------------*/
 
 .card {
+    min-width: 280px;
     background-color: var(--fondoblanco);
 
     padding: 5px 15px;
@@ -203,6 +209,24 @@ main{
     margin-bottom: .5em;
 }
 
+#filter div{
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+#filter div div{
+    color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+#filter div div input{
+    display: flex;
+    flex-direction: row;
+    margin: 0 .2em;
+}
+
 #admin-add .card p{
     margin-top: 10px;
 }
@@ -265,3 +289,20 @@ main{
 #cBtn:hover{
     background-color: #03045E;
 }
+/*@media (max-width: 1043px){
+    #cards a:last-of-type{
+        display: none;
+    }
+}*/
+
+@media (min-width: 1400px){
+    #cards{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/*@media (min-width: 1700px){
+    #cards{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}*/

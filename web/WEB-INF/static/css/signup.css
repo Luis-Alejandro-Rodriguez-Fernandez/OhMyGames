@@ -2,3 +2,14 @@ main form{
     height:500px;
     width: 400px;
 }
+
+
+@media screen and (orientation : portrait){
+    main form {
+        font-size: 20px;
+        height:35em;
+        width: 35em;
+    }
+
+
+}

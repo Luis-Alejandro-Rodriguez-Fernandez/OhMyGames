@@ -20,35 +20,47 @@ List<Desarrolladora> desarrolladoras = (List<Desarrolladora>) request.getAttribu
         <link href="public/img/logo.png" rel="icon" type="image/x-icon" />
     </head>
     <body>
-<!--        <div id="block">
-            <div id="cDiv">
-                <p id="cp"></p>
-                <a id="cBtn">Aceptar</a>
-            </div>
-        </div>-->
+        <!--        <div id="block">
+                    <div id="cDiv">
+                        <p id="cp"></p>
+                        <a id="cBtn">Aceptar</a>
+                    </div>
+                </div>-->
         <jsp:include page="../../partials/header.jsp"/>
         <nav id="filter">
-            <select id="cat" name="cat">
-                <option selected value=0>Todas</option>
-                <%for(Categoria c : categorias){%>
-                <option value="<%=c.getId()%>"><%=c.getNombre()%></option>
-                <%}%>
-            </select>
-            <select id="des" name="des">
-                <option selected value=0>Todas</option>
-                <%for(Desarrolladora d : desarrolladoras){%>
-                <option value=<%=d.getId()%>><%=d.getNombre()%></option>
-                <%}%>
-            </select>
-            <select id="tipo">
-                <option selected value=2> Juegos y DLC</option>
-                <option value=0> Juegos</option>
-                <option value=1> DLC</option>
-            </select>
+            <div>
+                <label for="cat">Categorias</label>
+                <select id="cat" name="cat">
+                    <option selected value=0>Todas</option>
+                    <%for(Categoria c : categorias){%>
+                    <option value="<%=c.getId()%>"><%=c.getNombre()%></option>
+                    <%}%>
+                </select>
+            </div>
+            <div>
+                <label for="des">Desarrolladoras</label>
+                <select id="des" name="des">
+                    <option selected value=0>Todas</option>
+                    <%for(Desarrolladora d : desarrolladoras){%>
+                    <option value=<%=d.getId()%>><%=d.getNombre()%></option>
+                    <%}%>
+                </select>
+            </div>
+            <div>
+                <label for="tipo">Tipo</label>
+                <select id="tipo">
+                    <option selected value=2> Juegos y DLC</option>
+                    <option value=0> Juegos</option>
+                    <option value=1> DLC</option>
+                </select>
+            </div>
             <div id="precio">
-                <input type="number" id="min" value="0" min="0" max="99"/>
-                <input type="number" id="max" value="100" min="1" max="100"/>
-                <button id="btn-pre"><img src="public/img/lupa.png" alt="lupa"/></button>
+                    <label for="min">Precio</label>
+                <div>
+                    <input type="number" id="min" value="0" min="0" max="99"/>
+                    <input type="number" id="max" value="100" min="1" max="100"/>
+                    <button id="btn-pre"><img src="public/img/lupa.png" alt="lupa"/></button>
+                </div>
             </div>
         </nav>
 
