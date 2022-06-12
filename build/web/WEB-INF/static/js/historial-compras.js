@@ -55,9 +55,9 @@ async function mostrarTransacciones(offset, limit) {
                             sectId.appendChild(importe);
                             div.appendChild(sectInfo);
 
-                            id.textContent = transaccion.id;
+                            id.textContent = "#"+json.id;
                             fecha.textContent = transaccion.fecha;
-                            importe.textContent = transaccion.importe + " €";
+                            importe.textContent = (transaccion.importe).toFixeD(2) + " €";
 
                             div.classList.add("transaction");
                             sectId.classList.add("id");
@@ -84,7 +84,7 @@ async function mostrarTransacciones(offset, limit) {
                                                 a.href = "?cmd=producto-consulta&id=" + compra.producto.id;
                                                 img.src = compra.producto.imagen;
                                                 h3.textContent = compra.producto.nombre;
-                                                p.textContent = compra.producto.precio + " €";
+                                                p.textContent = (compra.producto.precio).toFixed(2) + " €";
                                             });
                                         } else {
                                             let art = document.createElement("article");
@@ -169,7 +169,7 @@ async function mostrarTransacciones(offset, limit) {
                         sectId.appendChild(importe);
                         div.appendChild(sectInfo);
 
-                        id.textContent = json.id;
+                        id.textContent = "#"+json.id;
                         fecha.textContent = json.fecha;
                         importe.textContent = json.importe + " €";
 
@@ -197,7 +197,7 @@ async function mostrarTransacciones(offset, limit) {
                                             a.href = "?cmd=producto-consulta&id=" + compra.producto.id;
                                             img.src = compra.producto.imagen;
                                             h3.textContent = compra.producto.nombre;
-                                            p.textContent = compra.producto.precio + " €";
+                                            p.textContent = (compra.producto.precio).toFixed(2) + " €";
                                         });
                                     } else {
                                         let art = document.createElement("article");
@@ -215,12 +215,12 @@ async function mostrarTransacciones(offset, limit) {
                                         a.href = "?cmd=producto-consulta&id=" + json.producto.id;
                                         img.src = json.producto.imagen;
                                         h3.textContent = json.producto.nombre;
-                                        p.textContent = json.producto.precio;
+                                        p.textContent =(json.producto.precio).toFixed(2) +" €";
                                     }
                                 }).finally(() => {
 
                             cont++;
-                            if (cont === json.length) {
+                            if (cont === 1) {
                                 loading.style.visibility = "hidden";
                                 main.style.visibility = "visible";
                             }

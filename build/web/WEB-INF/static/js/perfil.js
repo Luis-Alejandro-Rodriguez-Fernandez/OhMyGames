@@ -70,7 +70,7 @@ function traerFavoritos(offsetFav, limitFav) {
             .then(json => {
                 if (json.value !== null) {
                     favSection.innerHTML = "";
-                    try {
+                    if(json.length > 1){
                         favSection.innerHTML = "";
                         json.forEach((fav) => {
 
@@ -131,7 +131,7 @@ function traerFavoritos(offsetFav, limitFav) {
                         } else {
                             nav.style.display = "none";
                         }
-                    } catch (e) {
+                    } else {
                         favSection.innerHTML = "";
 
                         let a = document.createElement("a");

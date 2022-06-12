@@ -24,22 +24,15 @@ public class ServiceActualizarUser extends Service {
             String email = request.getParameter("email");
             String user = request.getParameter("user");
             String pass = request.getParameter("pass");
-            String pass2 = request.getParameter("pass2");
             String img = request.getParameter("imgUp");
-            System.out.println(img);
+            System.out.println(pass);
             boolean mod = false;
             try {
-                if (pass.isEmpty() && img == null || img.isEmpty()) {
-                    mod = bll.modificarUsuario(u.getId(), user, email);
-                } else if(img == null || img.isEmpty()){
-                    if(pass.equals(pass2)){
-                    mod = bll.modificarUsuarioPass(u.getId(), user, email, pass);
-                    }
-                } else if(pass.isEmpty()){
-                    mod = bll.modificarUsuarioImg(u.getId(), user, email, img);
-                }else{
-                    mod = bll.modificarUsuarioAll(u.getId(), user, email, pass, img);
-                }
+
+                mod = bll.modificarUsuarioAll(u.getId(), user, email,
+                        pass.isEmpty() || pass.equals("") || pass.equals("undefined") ? u.getPassword() : pass,
+                        img == null || img.isEmpty() ? u.getAvatar() : img);
+
                 if (mod) {
                     json = "{\"res\" : true}";
                     Usuario ua = bll.obtenerUsuarioUs(user);
