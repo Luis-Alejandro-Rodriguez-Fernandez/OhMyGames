@@ -525,7 +525,7 @@ public class MainDAO {
 
     }
 
-    public boolean insertarProducto(String nombre, double precio, int tipo, int descuento, int categoria, int desarrolladora, String descripcion, String img, String date) {
+    public boolean insertarProducto(String nombre, double precio, int descuento, int tipo, int categoria, int desarrolladora, String descripcion, String img, String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
         final String SQL = "INSERT INTO productos "
                 + "(nombre,precio,descuento,tipo,categoria,desarrolladora,descripcion,imagen,lanzamiento) "
