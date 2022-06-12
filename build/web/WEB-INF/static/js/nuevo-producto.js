@@ -70,7 +70,7 @@ precio.addEventListener("keypress", (event) => {
 precio.addEventListener("input", () => {
     if (parseInt(precio.value) >= 150) {
         precio.value = 150;
-    } else if (parseInt(precio.value) <= 5) {
+    } else if (parseInt(precio.value) <= 0) {
         precio.value = 5;
     }
 });
